@@ -28,24 +28,24 @@ const Footer = () => {
     }
   };
   return (
-    <div className="w-full bg-[#F5F5F3] py-20">
+    <div className="w-full bg-[#d7d7fa] py-20">
       <div className="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2  xl:grid-cols-6 px-4 gap-10">
         <div className="col-span-2">
-          <FooterListTitle title=" More about Orebi Shop" />
+          <FooterListTitle title=" More about ChrisAlpha wine & liquor store" />
           <div className="flex flex-col gap-6">
             <p className="text-base w-full xl:w-[80%]">
-              Orebi is the ultimate destination for all your shopping needs.
-              With a wide range of high-quality products, easy-to-use
-              navigation, and secure payment options, we make online shopping
-              simple and enjoyable. Whether you're looking for the latest
-              fashion trends, cutting-edge tech gadgets, or everyday essentials,
-              we've got you covered. Plus, with fast shipping, exclusive deals,
-              and excellent customer service, your satisfaction is our priority.
-              Shop with confidence and discover the best at Orebi today!
+              ChrisAlpha wine & liquor store is the ultimate destination for all
+              your shopping needs. With a wide range of high-quality products,
+              easy-to-use navigation, and secure payment options, we make online
+              shopping simple and enjoyable. We caters to wine and liquor
+              enthusiasts, event planners, and everyday shoppers looking for
+              premium beverages with the convenience of online shopping. Shop
+              with confidence and discover the best at ChrisAlpha wine & liquor
+              store today!
             </p>
             <ul className="flex items-center gap-2">
               <a
-                href="https://www.youtube.com/@reactjsBD"
+                href="https://react-portfolio-ten-orcin.vercel.app/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -54,7 +54,7 @@ const Footer = () => {
                 </li>
               </a>
               <a
-                href="https://github.com/noorjsdivs"
+                href="https://react-portfolio-ten-orcin.vercel.app/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -63,7 +63,7 @@ const Footer = () => {
                 </li>
               </a>
               <a
-                href="https://www.facebook.com/Noorlalu143/"
+                href="https://react-portfolio-ten-orcin.vercel.app/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -72,7 +72,7 @@ const Footer = () => {
                 </li>
               </a>
               <a
-                href="https://www.linkedin.com/in/noor-mohammad-ab2245193/"
+                href="https://react-portfolio-ten-orcin.vercel.app/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -157,7 +157,7 @@ const Footer = () => {
                 </div>
                 <button
                   onClick={handleSubscription}
-                  className="bg-white text-lightText w-[30%] h-10 hover:bg-black hover:text-white duration-300 text-base tracking-wide"
+                  className="bg-white text-lightText w-[30%] h-10 hover:bg-[#05052e] hover:text-white duration-700 rounded-lg text-base tracking-wide"
                 >
                   Subscribe
                 </button>

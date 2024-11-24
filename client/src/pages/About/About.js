@@ -5,11 +5,13 @@ import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 const About = () => {
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState("");
-  useEffect(() => {
-    setPrevLocation(location.state.data);
-  }, [location]);
+
+  // useEffect(() => {
+  //   setPrevLocation(location.state.data);
+  // }, [location]);
+
   return (
-    <div className="max-w-container mx-auto px-4">
+    <div className="max-w-container bg-[#eeeefc] mx-auto px-4">
       <Breadcrumbs title="About" prevLocation={prevLocation} />
       <div className="pb-10">
         <h1 className="max-w-[600px] text-base text-lightText mb-2">

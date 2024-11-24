@@ -1,14 +1,17 @@
-import logo from "./orebiLogo2.png";
+import logo from "./orebiLogo2.jpg";
 import logoLight from "./logoLight.png";
 import bannerImgOne from "./banner/bannerImgOne.webp";
 import bannerImgTwo from "./banner/bannerImgTwo.webp";
 import bannerImgThree from "./banner/bannerImgThree.webp";
 import drinks from "../images/drink-2.jpg";
+import drink_1 from "../images/drink-1.jpg";
+import drink_4 from "../images/drink_4.jpg";
+
 import drink3 from "../images/drink-3.png";
 
-import saleImgOne from "./sale/saleImgOne.webp";
-import saleImgTwo from "./sale/saleImgTwo.webp";
-import saleImgThree from "./sale/saleImgThree.webp";
+import saleImgOne from "../images/Image.jpg";
+import saleImgTwo from "../images/Image-2.jpg";
+import saleImgThree from "../images/Image-3.jpg";
 // ============== Products Start here ====================
 import pdf1 from "../pdf/pdf1.pdf";
 // New Arrivals
@@ -81,6 +84,8 @@ import espson2 from "../images/products/imprimante/espson2.webp";
 import bannerVideoOne from "../images/banner/bannerVideoOne.mp4";
 
 export {
+  drink_4,
+  drink_1,
   drinks,
   drink3,
   bannerVideoOne,

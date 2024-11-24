@@ -2,13 +2,57 @@ import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import Product from "../../home/Products/Product";
 import { useSelector } from "react-redux";
-import { paginationItems } from "../../../constants";
 
-const items = paginationItems;
+function Items({ currentItems }) {
+  return (
+    <>
+      {currentItems.map((item, i) => (
+        <div
+          className="w-full transform scale-100 hover:scale-105 transition duration-300"
+          key={i}
+        >
+          <Product
+            _id={item._id}
+            img={item.img}
+            productName={item.productName}
+            price={item.price}
+            color={item.color}
+            badge={item.badge}
+            des={item.des}
+            pdf={item.pdf}
+            ficheTech={item.ficheTech}
+          />
+        </div>
+      ))}
+    </>
+  );
+}
 
-function Items({ currentItems, selectedBrands, selectedCategories }) {
-  // Filter items based on selected brands and categories
-  const filteredItems = currentItems.filter((item) => {
+const Pagination = ({ itemsPerPage }) => {
+  const [itemOffset, setItemOffset] = useState(0);
+  const [newProduct, setNewProduct] = useState([]);
+
+  const selectedBrands = useSelector(
+    (state) => state.orebiReducer.checkedBrands
+  );
+
+  const selectedCategories = useSelector(
+    (state) => state.orebiReducer.checkedCategorys
+  );
+
+  useEffect(() => {
+    fetch("http://192.168.0.170:5000/api/product")
+      .then((res) => res.json())
+      .then((data) => {
+        setNewProduct(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log("Error fetching new arrivals:", err);
+      });
+  }, []);
+
+  const filteredItems = newProduct.filter((item) => {
     const isBrandSelected =
       selectedBrands.length === 0 ||
       selectedBrands.some((brand) => brand.title === item.brand);
@@ -20,97 +64,36 @@ function Items({ currentItems, selectedBrands, selectedCategories }) {
     return isBrandSelected && isCategorySelected;
   });
 
-  const [newProduct, setNewProduct] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/product")
-      .then((res) => res.json())
-      .then((data) => {
-        setNewProduct(data);
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log("Error fetching new arrivals:", err);
-      });
-  }, []);
-
-  return (
-    <>
-      {filteredItems.map((item) => (
-        <div key={item._id} className="w-full">
-          {newProduct.map((products, i) => {
-            return (
-              <Product
-                _id={products._id}
-                img={products.img}
-                productName={products.productName}
-                price={products.price}
-                color={products.color}
-                badge={products.badge}
-                des={products.des}
-                pdf={products.pdf}
-                ficheTech={products.ficheTech}
-              />
-            );
-          })}
-        </div>
-      ))}
-    </>
-  );
-}
-
-const Pagination = ({ itemsPerPage }) => {
-  const [itemOffset, setItemOffset] = useState(0);
-  const [itemStart, setItemStart] = useState(1);
-
   const endOffset = itemOffset + itemsPerPage;
-  const currentItems = items.slice(itemOffset, endOffset);
-  const selectedBrands = useSelector(
-    (state) => state.orebiReducer.checkedBrands
-  );
-
-  const selectedCategories = useSelector(
-    (state) => state.orebiReducer.checkedCategorys
-  );
-
-  const pageCount = Math.ceil(items.length / itemsPerPage);
+  const currentItems = filteredItems.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(filteredItems.length / itemsPerPage);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
-    const newStart = newOffset + 1; // Adjust the start index
-
+    const newOffset = (event.selected * itemsPerPage) % filteredItems.length;
     setItemOffset(newOffset);
-    setItemStart(newStart);
   };
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mdl:gap-4 lg:gap-10">
-        <Items
-          currentItems={currentItems}
-          selectedBrands={selectedBrands}
-          selectedCategories={selectedCategories}
-        />{" "}
+      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-10 mdl:gap-4 lg:gap-10 ">
+        <Items currentItems={currentItems} />
       </div>
       <div className="flex flex-col mdl:flex-row justify-center mdl:justify-between items-center">
         <ReactPaginate
-          nextLabel=""
+          nextLabel="Next"
+          previousLabel="Previous"
           onPageChange={handlePageClick}
           pageRangeDisplayed={3}
           marginPagesDisplayed={2}
           pageCount={pageCount}
-          previousLabel=""
-          pageLinkClassName="w-9 h-9 border-[1px] border-lightColor hover:border-gray-500 duration-300 flex justify-center items-center"
-          pageClassName="mr-6"
-          containerClassName="flex text-base font-semibold font-titleFont py-10"
+          containerClassName="flex text-base gap-2 font-semibold font-titleFont py-10"
           activeClassName="bg-black text-white"
+          pageLinkClassName="w-9 h-9 border-[1px] border-lightColor hover:border-gray-500 duration-300 flex justify-center items-center"
         />
-
         <p className="text-base font-normal text-lightText">
-          Products from {itemStart} to {Math.min(endOffset, items.length)} of{" "}
-          {items.length}
+          Products {itemOffset + 1} to{" "}
+          {Math.min(endOffset, filteredItems.length)} of {filteredItems.length}
         </p>
-        <button onClick={() => console.log(selectedBrands)}> test</button>
       </div>
     </div>
   );

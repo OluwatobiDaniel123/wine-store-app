@@ -10,13 +10,13 @@ import {
 } from "../../../assets/images/index";
 
 const BestSellers = () => {
-  const [newArrival, setNewArrival] = useState([]);
+  const [bestSeller, setBestSeller] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/NewArrivalProduct")
+    fetch("http://localhost:5000/api/bestsellers")
       .then((res) => res.json())
       .then((data) => {
-        setNewArrival(data);
+        setBestSeller(data);
         console.log(data);
       })
       .catch((err) => {
@@ -26,9 +26,12 @@ const BestSellers = () => {
   return (
     <div className="w-full pb-20">
       <Heading heading="Our Bestsellers" />
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 lgl:grid-cols-3 xl:grid-cols-4 gap-10">
-        {newArrival?.map((product, i) => (
-          <div className="px-2" key={i}>
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lgl:grid-cols-3 xl:grid-cols-4 gap-10 ">
+        {bestSeller?.map((product, i) => (
+          <div
+            className="px-2 transform scale-100 hover:scale-105 transition duration-300"
+            key={i}
+          >
             <Product
               _id={product._id}
               img={product.img} // Assuming `img` is the URL of the product image

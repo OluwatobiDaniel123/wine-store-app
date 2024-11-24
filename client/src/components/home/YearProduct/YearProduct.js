@@ -6,26 +6,28 @@ import Image from "../../designLayouts/Image";
 
 const YearProduct = () => {
   return (
-    <Link to="/shop">
-      <div className="w-full h-80 mb-20 bg-[#f3f3f3] md:bg-transparent relative font-titleFont">
-        <Image
-          className="w-full h-full object-cover hidden md:inline-block"
-          imgSrc={productOfTheYear}
-        />
-        <div className="w-full md:w-2/3 xl:w-1/2 h-80 absolute px-4 md:px-0 top-0 right-0 flex flex-col items-start gap-6 justify-center">
-          <h1 className="text-3xl font-semibold text-primeColor">
-            Product of The year
-          </h1>
+    <div className="w-full h-96 mb-20 bg-[#f3f3f3] md:bg-transparent relative font-titleFont">
+      <Image
+        className="w-full h-full object-cover hidden md:inline-block"
+        imgSrc={productOfTheYear}
+      />
+      <div className="w-full md:w-2/3 xl:w-1/2 h-80 absolute px-4 md:px-0 top-0 right-0 flex flex-col items-start gap-6 justify-center">
+        <h1 className="text-3xl font-semibold text-primeColor">Our Mission</h1>
+        <p className="text-base font-normal text-primeColor max-w-[600px] mr-4">
+          To be a company that is committed to achieving the highest standards
+          in everything we do, while always upholding ethical principles,
+          collaborating effectively with others, and consistently delivering
+          high-quality products and services.
+        </p>
+        {/* <h1 className="text-3xl font-semibold text-primeColor">Vission</h1>
           <p className="text-base font-normal text-primeColor max-w-[600px] mr-4">
-            Whether you're looking for the latest fashion trends, cutting-edge
-            tech gadgets, or everyday essentials, we've got you covered. Plus,
-            with fast shipping, exclusive deals, and excellent customer service,
-            your satisfaction is our priority.
-          </p>
-          <ShopNow />
-        </div>
+            To be the best in the world in terms of quality, presentation and
+            customer service experience with responsible business practices.
+          </p> */}
+
+        <ShopNow />
       </div>
-    </Link>
+    </div>
   );
 };
 

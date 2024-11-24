@@ -56,11 +56,14 @@ const NewArrivals = () => {
   }, []);
 
   return (
-    <div className="w-full pb-16">
+    <div className="w-full h-3/5 pb-16">
       <Heading heading="New Arrivals" />
       <Slider {...settings}>
         {newArrival?.map((product, i) => (
-          <div className="px-2" key={i}>
+          <div
+            className="px-2 h-96 shadow-lg transform scale-100 hover:scale-105 transition duration-300"
+            key={i}
+          >
             <Product
               _id={product._id}
               img={product.img} // Assuming `img` is the URL of the product image

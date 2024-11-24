@@ -62,8 +62,7 @@ const Category = () => {
                 </span>
               )}
             </li>
-          ))}
-          <li onClick={() => console.log(checkedCategorys)}>test</li>
+          ))}{" "}
         </ul>
       </div>
     </div>

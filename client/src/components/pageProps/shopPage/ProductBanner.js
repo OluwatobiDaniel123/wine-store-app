@@ -4,7 +4,7 @@ import { ImList } from "react-icons/im";
 import { GoTriangleDown } from "react-icons/go";
 
 const ProductBanner = ({ itemsPerPageFromBanner }) => {
-  //   const [selected, setSelected] = useState("");
+  // const [selected, setSelected] = useState("");
   const [girdViewActive, setGridViewActive] = useState(true);
   const [listViewActive, setListViewActive] = useState(false);
   useEffect(() => {
@@ -23,10 +23,6 @@ const ProductBanner = ({ itemsPerPageFromBanner }) => {
 
   return (
     <div className="w-full flex flex-col md:flex-row md:items-center justify-between">
-      {/* =========================================================
-                            Left Part Start here
-        ======================================================== */}
-
       <div className="flex items-center gap-4">
         <span
           className={`${
@@ -47,12 +43,7 @@ const ProductBanner = ({ itemsPerPageFromBanner }) => {
           <ImList />
         </span>
       </div>
-      {/* =========================================================
-                            Left Part End here
-        ======================================================== */}
-      {/* =========================================================
-                            Right Part STart here
-        ======================================================== */}
+
       <div className="flex items-center gap-2 md:gap-6 mt-4 md:mt-0">
         <div className="flex items-center gap-2 text-base text-[#767676] relative">
           <label className="block">Sort by:</label>
@@ -87,9 +78,6 @@ const ProductBanner = ({ itemsPerPageFromBanner }) => {
           </span>
         </div>
       </div>
-      {/* =========================================================
-                            Right Part End here
-        ======================================================== */}
     </div>
   );
 };

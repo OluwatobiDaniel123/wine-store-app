@@ -3,19 +3,26 @@ import { AiOutlineCopyright } from "react-icons/ai";
 
 const FooterBottom = () => {
   return (
-    <div className="w-full bg-[#F5F5F3] group">
+    <div className="w-full bg-[#05052e] group">
       <div className="max-w-container mx-auto border-t-[1px] pt-10 pb-20">
-        <p className="text-titleFont font-normal text-center flex md:items-center justify-center text-lightText duration-200 text-sm">
-          <span className="text-md mr-[1px] mt-[2px] md:mt-0 text-center hidden md:inline-flex">
+        <h6 className="text-titleFont font-normal text-center flex md:items-center justify-center text-lightText duration-200 text-xs">
+          <span className="text-white mr-[1px] mt-[2px] md:mt-0 text-center md:inline-flex">
             <AiOutlineCopyright />
           </span>
-          Copyright 2024 | Orebi shopping | All Rights Reserved |
-          <a href="https://reactbd.com/" target="_blank" rel="noreferrer">
-            <span className="ml-1 font-medium group-hover:text-primeColor">
+          <p className="text-white">
+            ChrisAlpha wine & liquor store Limited | 2024 | All Rights Reserved
+            |
+          </p>
+          <a
+            href="https://react-portfolio-ten-orcin.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="ml-1 font-medium text-white group-hover:text-sky-700">
               Powered by danetech
             </span>
           </a>
-        </p>
+        </h6>
       </div>
     </div>
   );

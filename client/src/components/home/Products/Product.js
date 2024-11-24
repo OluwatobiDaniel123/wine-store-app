@@ -20,7 +20,6 @@ const Product = (props) => {
   const [wishList, setWishList] = useState([]);
   const navigate = useNavigate();
   const productItem = props;
-  console.log(props);
 
   const handleProductDetails = () => {
     navigate(`/product/${rootId}`, {
@@ -36,7 +35,7 @@ const Product = (props) => {
     console.log(wishList);
   };
   return (
-    <div className="w-full relative group">
+    <div className="w-88 bg-[#d7d7fa] rounded-lg relative group shadow-lg">
       <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
         <div onClick={handleProductDetails}>
           <Image className="w-full h-full" imgSrc={props.img} />
@@ -44,14 +43,8 @@ const Product = (props) => {
         <div className="absolute top-6 left-8">
           {props.badge && <Badge text="New" />}
         </div>
-        <div className="w-full h-32 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
-          <ul className="w-full h-full flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-l border-r">
-            <li className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full">
-              Compare
-              <span>
-                <GiReturnArrow />
-              </span>
-            </li>
+        <div className="w-full h-24 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
+          <ul className="w-full h-full  flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-1 border-r">
             <li
               onClick={() =>
                 dispatch(
@@ -66,7 +59,7 @@ const Product = (props) => {
                   })
                 )
               }
-              className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+              className="text-[#767676] hover:text-primeColor text-xs font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
             >
               Add to Cart
               <span>
@@ -75,7 +68,7 @@ const Product = (props) => {
             </li>
             <li
               onClick={handleProductDetails}
-              className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+              className="text-[#767676] hover:text-primeColor text-xs font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
             >
               View Details
               <span className="text-lg">
@@ -84,7 +77,7 @@ const Product = (props) => {
             </li>
             <li
               onClick={handleWishList}
-              className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+              className="text-[#767676] hover:text-primeColor text-xs font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
             >
               Add to Wish List
               <span>

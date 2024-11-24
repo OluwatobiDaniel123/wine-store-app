@@ -1,74 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import {
-  bannerImgOne,
-  bannerImgTwo,
-  bannerImgThree,
-  bannerVideoOne,
-  drinks,
-  drink3,
-} from "../../assets/images";
+import { bannerImgOne } from "../../assets/images";
 
-import Image from "../designLayouts/Image";
-
-const CustomSlide = ({ Subtext, imgSrc, text, buttonLink, buttonText }) => (
-  <div
-    style={{
-      position: "relative",
-      backgroundImage: `url(${drinks})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    }}
-  >
-    <div
-      style={{
-        maxWidth: "450px", // Adjust the maxWidth as needed
-        marginRight: "100px", // Add margin between text/button and image
-        padding: "20px",
-      }}
-    >
-      <h1
-        style={{
-          marginBottom: "15px",
-          fontSize: "2.5rem", // Adjust the font size as needed
-          color: "white",
-          fontWeight: "700",
-          fontFamily: "cursive",
-        }}
-      >
-        {text}
-      </h1>
-      <p
-        style={{
-          marginBottom: "25px",
-          fontSize: "1.5rem", // Adjust the font size as needed
-          color: "white",
-          fontFamily: "cursive",
-        }}
-      >
-        {Subtext}
-      </p>
-
-      <Link to={buttonLink}>
-        <button className="bg-primeColor text-white text-lg font-bodyFont w-[185px] h-[50px] hover:bg-black duration-300 font-bold">
-          {buttonText}
-        </button>
-      </Link>
-    </div>
-    <div style={{ marginLeft: "-10px" }}>
-      {/* <Image imgSrc={imgSrc} /> */}
-      <img src={drink3} />
-      {/* <video src={bannerVideoOne} autoPlay loop /> */}
-    </div>
-  </div>
-);
+import CustomSlide from "./CustomSlide";
 
 const Banner = () => {
   const [dotActive, setDocActive] = useState(0);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -164,7 +102,7 @@ const Banner = () => {
   const slides = [
     {
       imgSrc: bannerImgOne,
-      text: "Enhance Your Printing Experience",
+      text: "Whisky-drinks",
       Subtext:
         "Explore our premium printers and consumables for exceptional results",
       buttonLink: "/shop",
@@ -172,25 +110,24 @@ const Banner = () => {
     },
     {
       imgSrc: bannerImgOne,
-      text: "Quality Printing Solutions",
+      text: "Red-Wine",
       Subtext:
-        "Discover our wide range of printers and consumables designed for professional printing needs.",
-      buttonLink: "/shop",
+        "Discover our wide range of printers and consumables designed for pro.",
+      buttonLink: "/about",
       buttonText: "About-us",
     },
     {
       imgSrc: bannerImgOne,
-      text: "Efficiency Redefined",
+      text: "Non-Alcholic",
       Subtext:
-        "Maximize productivity with our advanced printers and high-quality consumables. ",
+        "Maximize productivity with our advanced printers and high-quality co ",
       buttonLink: "/contact",
       buttonText: "Contact-us",
     },
-
-    // Add more slides as needed
   ];
+
   return (
-    <div className="w-full bg-white">
+    <div className="w-full  bg-white">
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <CustomSlide key={index} {...slide} />
