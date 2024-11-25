@@ -1,5 +1,5 @@
-import logo from "./orebiLogo-2.png";
-import logoLight from "./orebiLogo-2.png";
+import logo from "./orebiLogo-2.jpg";
+import logoLight from "./orebiLogo-2.jpg";
 import bannerImgOne from "./banner/bannerImgOne.webp";
 import bannerImgTwo from "./banner/bannerImgTwo.webp";
 import bannerImgThree from "./banner/bannerImgThree.webp";
