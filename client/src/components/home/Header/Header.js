@@ -32,7 +32,7 @@ const Header = () => {
         <Flex className="flex items-center justify-between h-full">
           <Link to="/">
             <div>
-              <Image className="w-20 object-cover" imgSrc={logo} />
+              <Image className="w-16 object-cover" imgSrc={logo} />
             </div>
           </Link>
           <div>
@@ -69,9 +69,9 @@ const Header = () => {
                   transition={{ duration: 0.5 }}
                   className="w-[80%] h-full relative"
                 >
-                  <div className="w-full h-full bg-primeColor p-6">
+                  <div className="w-full h-full bg-primeColor p-4">
                     <img
-                      className="w-28 mb-6"
+                      className="w-16 mb-6"
                       src={logoLight}
                       alt="logoLight"
                     />

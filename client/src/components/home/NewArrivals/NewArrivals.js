@@ -58,6 +58,8 @@ const NewArrivals = () => {
   return (
     <div className="w-full h-3/5 pb-16">
       <Heading heading="New Arrivals" />
+      <span>No Product For Now</span>
+
       <Slider {...settings}>
         {newArrival?.map((product, i) => (
           <div

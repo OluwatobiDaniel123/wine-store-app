@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 function Items({ currentItems }) {
   return (
     <>
+      <span>No Product For Now</span>
+
       {currentItems.map((item, i) => (
         <div
           className="w-full transform scale-100 hover:scale-105 transition duration-300"

@@ -27,15 +27,10 @@ const CustomSlide = ({ text, Subtext, buttonText, buttonLink }) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          height: "400px",
         }}
       >
-        <div
-          style={{
-            maxWidth: "450px",
-            marginRight: "100px",
-            padding: "20px",
-          }}
-        >
+        <div style={{ padding: "15px" }}>
           <h1
             style={{
               marginBottom: "15px",
@@ -61,9 +56,6 @@ const CustomSlide = ({ text, Subtext, buttonText, buttonLink }) => {
               {buttonText}
             </button>
           </Link>
-        </div>
-        <div>
-          <img src={drink3} />
         </div>
       </div>
     </div>

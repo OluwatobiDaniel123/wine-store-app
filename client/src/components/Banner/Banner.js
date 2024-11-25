@@ -104,7 +104,7 @@ const Banner = () => {
       imgSrc: bannerImgOne,
       text: "Whisky-drinks",
       Subtext:
-        "Explore our premium printers and consumables for exceptional results",
+        "Escape the Ordinary, Embrace the ExtraordinarySidekick to Your Adventures ",
       buttonLink: "/shop",
       buttonText: "Shop Now",
     },
@@ -112,7 +112,7 @@ const Banner = () => {
       imgSrc: bannerImgOne,
       text: "Red-Wine",
       Subtext:
-        "Discover our wide range of printers and consumables designed for pro.",
+        "Wine That Epitomizes Professional Excellence Sidekick to Your Adventures .",
       buttonLink: "/about",
       buttonText: "About-us",
     },
@@ -120,7 +120,7 @@ const Banner = () => {
       imgSrc: bannerImgOne,
       text: "Non-Alcholic",
       Subtext:
-        "Maximize productivity with our advanced printers and high-quality co ",
+        "Wine: The Coolest Sidekick to Your Adventures Sidekick to Your Adventures ",
       buttonLink: "/contact",
       buttonText: "Contact-us",
     },
