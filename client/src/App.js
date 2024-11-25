@@ -24,7 +24,7 @@ import Shop from "./pages/Shop/Shop";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/Account/Profile";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Layout = () => {
   return (
@@ -74,14 +74,35 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  const [showPopup, setShowPopup] = useState(true); // Controls the popup visibility
-  const [isVerified, setIsVerified] = useState(false); // Tracks age verification status
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    // Check localStorage for age verification status and expiration
+    const storedData = localStorage.getItem("ageVerification");
+    if (storedData) {
+      const { verified, expiry } = JSON.parse(storedData);
+
+      // Check if the stored data has expired
+      if (verified && new Date().getTime() < expiry) {
+        setShowPopup(false); // User is verified and within the expiration period
+        return;
+      }
+    }
+    setShowPopup(true); // Show popup if not verified or expired
+  }, []);
 
   const handleVerification = (isOver19) => {
     if (isOver19) {
-      setIsVerified(true); // Allow access
+      const expirationPeriod = 5 * 60 * 1000; // 7 days in milliseconds
+      const expiry = new Date().getTime() + expirationPeriod; // Current time + expiration period
+
+      // Save verification status and expiration time to localStorage
+      localStorage.setItem(
+        "ageVerification",
+        JSON.stringify({ verified: true, expiry })
+      );
     } else {
-      alert("You must be over 19 to access this site.");
+      alert("You must be over 18 to access this site.");
       window.location.href = "https://google.com"; // Redirect if underage
     }
     setShowPopup(false); // Close the popup
@@ -97,9 +118,7 @@ function App() {
             left: 0,
             width: "100vw",
             height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            // backgroundColor: "rgba(0, 0, 0, 0.1)",
-
+            backgroundColor: "rgba(0, 0, 0, 0.1)", // Very transparent
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -151,7 +170,7 @@ function App() {
         </div>
       )}
 
-      {isVerified && (
+      {!showPopup && (
         <div className="font-bodyFont">
           <RouterProvider router={router} />
         </div>
