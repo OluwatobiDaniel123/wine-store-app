@@ -14,20 +14,20 @@ const Brand = () => {
   const brands = [
     {
       _id: 900,
-      title: "Pantum",
+      title: "Baron Romero",
     },
     {
       _id: 901,
-      title: "Hp",
+      title: "Hennessy",
     },
     {
       _id: 902,
-      title: "Epson",
+      title: "Apothic Red",
     },
 
     {
       _id: 903,
-      title: "Ricoh",
+      title: "Agor red wine",
     },
   ];
 
