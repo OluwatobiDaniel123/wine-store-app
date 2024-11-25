@@ -60,23 +60,23 @@ const HeaderBottom = () => {
               >
                 <Link to={"category/imprimante"}>
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                    Printer
+                    Wine
                   </li>
                 </Link>
 
                 <Link to={"category/ancre"}>
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                    Ink
+                    Whisky
                   </li>
                 </Link>
                 <Link to={"category/Ruban"}>
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                    part's
+                    Non-alcholic
                   </li>
                 </Link>
                 <Link to={"category/Bac"}>
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                    spare's
+                    Red-wine
                   </li>
                 </Link>
               </motion.ul>
