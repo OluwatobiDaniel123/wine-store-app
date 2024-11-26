@@ -4,36 +4,6 @@ import BestSellers from "../model/BestSekllers.js";
 import Product from "../model/Product.js";
 import SplOfferData from "../model/SplOfferData.js";
 
-// POST: http://localhost:8080/api/new
-// export const create_Categories = async (req, res) => {
-//   try {
-//     const { type, color } = req.body;
-//     const newCategory = new Category({ type, color });
-//     await newCategory.save();
-//     res.status(201).json(newCategory);
-//   } catch (error) {
-//     res
-//       .status(400)
-//       .json({ error: "Category Creation Error", details: error.message });
-//   }
-// };
-
-// GET: http://localhost:8080/api/categories
-// export const get_Categories = async (req, res) => {
-//   try {
-//     const data = await Category.find({});
-//     const filter = data.map((v) => ({
-//       type: v.type,
-//       color: v.color,
-//     }));
-//     res.json(filter);
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .json({ message: `Error while fetching categories: ${error.message}` });
-//   }
-// };
-
 // POST: http://localhost:8080/api/transaction
 export const create_NewArrivalProduct = async (req, res) => {
   try {
@@ -191,7 +161,6 @@ export const get_SplOfferData = async (req, res) => {
   }
 };
 
-// DELETE: http://localhost:8080/api/transaction
 export const delete_Transaction = async (req, res) => {
   try {
     if (!req.body)
