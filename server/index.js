@@ -17,7 +17,13 @@ const app = express();
 
 dotenv.config();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://wine-store-app-client.vercel.app", // Allow only your client
+    methods: ["GET", "POST"], // Allow specific methods
+  })
+);
+
 app.use(express.json());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
