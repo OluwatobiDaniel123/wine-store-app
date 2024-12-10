@@ -9,7 +9,7 @@ const SpecialOffers = () => {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/specialofferdata")
+    fetch("https://wine-store-app-server.vercel.app//api/specialofferdata")
       .then((res) => res.json())
       .then((SplOfferData) => {
         setData(SplOfferData);

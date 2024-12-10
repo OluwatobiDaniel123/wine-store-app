@@ -13,7 +13,7 @@ const BestSellers = () => {
   const [bestSeller, setBestSeller] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/bestsellers")
+    fetch("https://wine-store-app-server.vercel.app/api/bestsellers")
       .then((res) => res.json())
       .then((data) => {
         setBestSeller(data);
