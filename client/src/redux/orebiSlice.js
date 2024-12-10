@@ -2,10 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
 const initialState = {
-  userInfo: [],
+  user: {
+    name: "",
+    email: "",
+    address: "",
+    city: "",
+    country: "",
+    phone: "",
+  },
+  isAuthenticated: false,
   products: [],
   checkedBrands: [],
   checkedCategorys: [],
+  checkoutData: {
+    totalAmt: 0,
+    shippingCharge: 0,
+  },
 };
 
 export const orebiSlice = createSlice({
@@ -51,6 +63,11 @@ export const orebiSlice = createSlice({
       // Dispatch a success toast
       toast.error("Product removed from cart");
     },
+
+    setCart(state, action) {
+      state.products = action.payload;
+    },
+
     resetCart: (state) => {
       state.products = [];
       // Dispatch a success toast
@@ -85,17 +102,26 @@ export const orebiSlice = createSlice({
         state.checkedCategorys.push(category);
       }
     },
-    registerUser: (state, action) => {
-      const newUser = state.payload;
-      return {
-        ...state,
-        userInfo: newUser,
-      };
+    UserInfo: (state, action) => {
+      state.user = action.payload; // Update user with payload (name and email)
+      state.isAuthenticated = true; // Set authenticated state to true
+    },
+
+    LogOutUser: (state) => {
+      state.user = { name: "", email: "" }; // Reset user info
+      state.isAuthenticated = false; // Set authentication to false
+    },
+
+    setCheckoutData: (state, action) => {
+      state.checkoutData = action.payload;
     },
   },
 });
 
 export const {
+  setCart,
+  LogOutUser,
+  setCheckoutData,
   addToCart,
   increaseQuantity,
   drecreaseQuantity,
@@ -103,7 +129,7 @@ export const {
   resetCart,
   toggleBrand,
   toggleCategory,
-  registerUser,
+  UserInfo,
 } = orebiSlice.actions;
 
 export default orebiSlice.reducer;

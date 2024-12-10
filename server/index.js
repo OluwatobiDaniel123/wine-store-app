@@ -24,18 +24,18 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use(route);
 
-// const products = Array.from({ length: 150 }, (_, index) => ({
-//   img: `http://wine-store-app-server.vercel.app/uploads/img-1.jpg`, // Dynamic image paths
+// const products = Array.from({ length: 6 }, (_, index) => ({
+//   img: `http://localhost:5000/uploads/img-1.jpg`, // Dynamic image paths
 //   productName: ` Product Data ${index + 1}`,
 //   price: (Math.random() * 100).toFixed(2), // Random price between 0 and 100
 //   color: "Your Color",
 //   badge: index % 2 === 0, // Alternate badge value between true and false
 //   des: `Description for Product ${index + 1}`,
-//   cat: "Bac",
+//   cat: "Ruban",
 // }));
 
 // // Save all products at once using insertMany
-// Product.insertMany(products)
+// SplOfferData.insertMany(products)
 //   .then(() => console.log("100 products inserted successfully"))
 //   .catch((error) => console.error("Error inserting products:", error));
 

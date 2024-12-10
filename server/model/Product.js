@@ -8,7 +8,6 @@ const ProductSchema = new Schema(
     productName: { type: String, required: true },
     price: { type: Number, required: true },
     color: { type: String, required: true },
-    badge: { type: String, required: true },
     des: { type: String, required: true },
     badge: { type: Boolean, default: false, required: true },
 

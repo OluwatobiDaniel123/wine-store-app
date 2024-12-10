@@ -24,7 +24,6 @@ const Brand = () => {
       _id: 902,
       title: "Apothic Red",
     },
-
     {
       _id: 903,
       title: "Agor red wine",

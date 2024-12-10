@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { logoLight } from "../../assets/images";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { registerUser } from "../../redux/orebiSlice";
+import { registerUser, UserInfo } from "../../redux/orebiSlice";
 
 const SignUp = () => {
   const InitialValue = {
@@ -82,7 +82,7 @@ const SignUp = () => {
 
         console.log(data);
 
-        dispatch(registerUser(data));
+        dispatch(UserInfo(data));
         setSuccessMsg(
           `Hello dear ${InputValue.clientName}, Welcome to OREBI. We received your Sign up request. Stay connected, and further assistance will be sent to you at ${InputValue.email}`
         );
@@ -95,7 +95,7 @@ const SignUp = () => {
   return (
     <div className="w-full h-screen flex items-center justify-start">
       <div className="w-1/2 hidden lgl:inline-flex h-full text-white">
-        <div className="w-[450px] h-full bg-primeColor px-10 flex flex-col gap-6 justify-center">
+        <div className="w-[450px] h-fit bg-primeColor px-10 flex flex-col gap-6 justify-center">
           <Link to="/">
             <img src={logoLight} alt="logoImg" className="w-28" />
           </Link>
@@ -111,7 +111,7 @@ const SignUp = () => {
             </span>
             <p className="text-base text-gray-300">
               <span className="text-white font-semibold font-titleFont">
-                Get started fast with OREBI
+                Get started fast with CHRISALPHAWINE
               </span>
               <br />
               Sign up to access your account, track your orders, and enjoy
@@ -124,7 +124,7 @@ const SignUp = () => {
             </span>
             <p className="text-base text-gray-300">
               <span className="text-white font-semibold font-titleFont">
-                Access all OREBI services
+                Access all CHRISALPHAWINE services
               </span>
               <br />
               Sign up also to enjoy faster checkout and exclusive deals and
@@ -146,7 +146,7 @@ const SignUp = () => {
           </div>
           <div className="flex items-center justify-between mt-10">
             <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
-              © OREBI
+              © CHRISALPHAWINE
             </p>
             <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
               Terms
@@ -365,7 +365,7 @@ const SignUp = () => {
                   Create Account
                 </button>
                 <p className="text-sm text-center font-titleFont font-medium">
-                  Don't have an Account?{" "}
+                  Already Register Sign-in Here {"  "}
                   <Link to="/signin">
                     <span className="hover:text-blue-600 duration-300">
                       Sign in

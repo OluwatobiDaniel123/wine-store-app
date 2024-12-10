@@ -58,23 +58,23 @@ const HeaderBottom = () => {
                 transition={{ duration: 0.5 }}
                 className="absolute top-36 z-50 bg-primeColor w-auto text-[#767676] h-auto p-4 pb-6"
               >
-                <Link to={"category/imprimante"}>
+                <Link to={"category/Wine"}>
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
                     Wine
                   </li>
                 </Link>
 
-                <Link to={"category/ancre"}>
+                <Link to={"category/Whisky"}>
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
                     Whisky
                   </li>
                 </Link>
-                <Link to={"category/Ruban"}>
+                <Link to={"category/Non-alcholic"}>
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
                     Non-alcholic
                   </li>
                 </Link>
-                <Link to={"category/Bac"}>
+                <Link to={"category/Red-wine"}>
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
                     Red-wine
                   </li>

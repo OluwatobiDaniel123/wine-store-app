@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { BsCheckCircleFill } from "react-icons/bs";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { logoLight } from "../../assets/images";
+import { BsCheckCircleFill } from "react-icons/bs";
+import { toast } from "react-toastify";
 import axios from "axios";
+import { UserInfo } from "../../redux/orebiSlice"; // Adjust the path as per your project structure
+import { logoLight } from "../../assets/images";
+import { setCart } from "../../redux/orebiSlice";
 
 const SignIn = () => {
-  const InitialValue = {
-    email: "",
-    password: "",
-  };
-
-  const [InputValue, setInputValue] = useState(InitialValue);
+  const dispatch = useDispatch(); // Hook to dispatch Redux actions
+  const [InputValue, setInputValue] = useState({ email: "", password: "" });
   const [ErrorInputValue, setErrorInputValue] = useState({});
   const [successMsg, setSuccessMsg] = useState("");
 
@@ -28,7 +28,6 @@ const SignIn = () => {
     e.preventDefault();
 
     const errors = {};
-
     if (!InputValue.email) {
       errors.errEmail = "Enter your Email";
     } else if (!EmailValidation(InputValue.email)) {
@@ -49,15 +48,32 @@ const SignIn = () => {
           "http://localhost:5000/auth/login",
           InputValue
         );
-        console.log(data);
-        setSuccessMsg(
-          `Hello dear ${InputValue.email}, Welcome to OREBI. We received your Sign up request. Stay connected, and further assistance will be sent to you at ${InputValue.email}`
+
+        dispatch(
+          UserInfo({
+            name: data.user.clientName,
+            email: data.user.email,
+            address: data.user.address,
+            city: data.user.city,
+            country: data.user.country,
+            phone: data.user.phone,
+          })
         );
+
+        dispatch(setCart(data.products || []));
+
+        setSuccessMsg(
+          `Hello ${InputValue.email}, Welcome to Chrisalphawine! We received your Sign In request.`
+        );
+
+        toast.success("Sign in successful!");
       } catch (error) {
         console.log(error);
+        toast.error("Sign in failed. Please try again.");
       }
     }
   };
+
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <div className="w-1/2 hidden lgl:inline-flex h-full text-white">
@@ -65,55 +81,32 @@ const SignIn = () => {
           <Link to="/">
             <img src={logoLight} alt="logoImg" className="w-28" />
           </Link>
+          {/* Informational Section */}
           <div className="flex flex-col gap-1 -mt-1">
             <h1 className="font-titleFont text-xl font-medium">
               Stay sign in for more
             </h1>
             <p className="text-base">When you sign in, you are with us!</p>
           </div>
+          {/* Features List */}
           <div className="w-[300px] flex items-start gap-3">
             <span className="text-green-500 mt-1">
               <BsCheckCircleFill />
             </span>
             <p className="text-base text-gray-300">
               <span className="text-white font-semibold font-titleFont">
-                Get started fast with OREBI
+                Get started fast with CHRISALPHAWINE
               </span>
               <br />
               Log in to access your account, track your orders, and enjoy
               personalized shopping.
             </p>
           </div>
-          <div className="w-[300px] flex items-start gap-3">
-            <span className="text-green-500 mt-1">
-              <BsCheckCircleFill />
-            </span>
-            <p className="text-base text-gray-300">
-              <span className="text-white font-semibold font-titleFont">
-                Access all OREBI services
-              </span>
-              <br />
-              Log in also to enjoy faster checkout and exclusive deals and enjoy
-              your shopping.
-            </p>
-          </div>
-          <div className="w-[300px] flex items-start gap-3">
-            <span className="text-green-500 mt-1">
-              <BsCheckCircleFill />
-            </span>
-            <p className="text-base text-gray-300">
-              <span className="text-white font-semibold font-titleFont">
-                Trusted by online Shoppers
-              </span>
-              <br />
-              Enter your details to continue shopping with us and unlock
-              personalized recommendations and order tracking.
-            </p>
-          </div>
+          {/* Footer */}
           <div className="flex items-center justify-between mt-10">
             <Link to="/">
               <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
-                © OREBI
+                © CHRISALPHAWINE
               </p>
             </Link>
             <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
@@ -135,10 +128,7 @@ const SignIn = () => {
               {successMsg}
             </p>
             <Link to="/profile">
-              <button
-                className="w-full h-10 bg-primeColor text-gray-200 rounded-md text-base font-titleFont font-semibold 
-            tracking-wide hover:bg-black hover:text-white duration-300"
-              >
+              <button className="w-full h-10 bg-primeColor text-gray-200 rounded-md text-base font-titleFont font-semibold tracking-wide hover:bg-black hover:text-white duration-300">
                 Start shopping now
               </button>
             </Link>
@@ -165,12 +155,10 @@ const SignIn = () => {
                   />
                   {ErrorInputValue.errEmail && (
                     <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
                       {ErrorInputValue.errEmail}
                     </p>
                   )}
                 </div>
-
                 {/* Password */}
                 <div className="flex flex-col gap-.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
@@ -186,15 +174,13 @@ const SignIn = () => {
                   />
                   {ErrorInputValue.errPassword && (
                     <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
                       {ErrorInputValue.errPassword}
                     </p>
                   )}
                 </div>
-
                 <button
                   onClick={handleSignIn}
-                  className="bg-primeColor hover:bg-black text-gray-200 hover:text-white cursor-pointer w-full text-base font-medium h-10 rounded-md  duration-300"
+                  className="bg-primeColor hover:bg-black text-gray-200 hover:text-white cursor-pointer w-full text-base font-medium h-10 rounded-md duration-300"
                 >
                   Sign In
                 </button>
