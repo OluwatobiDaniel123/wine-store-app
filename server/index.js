@@ -19,10 +19,16 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: "https://wine-store-app-client.vercel.app", // Allow only your client
-    methods: ["GET", "POST"], // Allow specific methods
+    origin: "https://wine-store-app-client.vercel.app", // Allow only your frontend's domain
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Allow cookies if needed
   })
 );
+
+app.use((req, res, next) => {
+  console.log("Headers received:", req.headers);
+  next();
+});
 
 app.use(express.json());
 
