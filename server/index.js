@@ -31,7 +31,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(route);
 
 // const products = Array.from({ length: 6 }, (_, index) => ({
-//   img: `https://wine-store-app-server.vercel.app//uploads/img-1.jpg`, // Dynamic image paths
+//   img: `https://wine-store-app-server.vercel.app/uploads/img-1.jpg`, // Dynamic image paths
 //   productName: ` Product Data ${index + 1}`,
 //   price: (Math.random() * 100).toFixed(2), // Random price between 0 and 100
 //   color: "Your Color",
