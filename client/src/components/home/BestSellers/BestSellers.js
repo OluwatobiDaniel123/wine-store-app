@@ -13,16 +13,8 @@ const BestSellers = () => {
   const [bestSeller, setBestSeller] = useState([]);
 
   useEffect(() => {
-    fetch("https://wine-store-app-server.vercel.app/api/bestsellers", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return res.json();
-      })
+    fetch("https://wine-store-app-server.vercel.app/api/bestsellers")
+      .then((res) => res.json())
       .then((data) => {
         setBestSeller(data);
         console.log("Data fetched successfully:", data);
