@@ -31,6 +31,10 @@ app.use(
 
 app.options("*", cors()); // Allow preflight for all routes
 
+app.get("/api/bestsellers", (req, res) => {
+  res.json({ message: "Bestsellers data" });
+});
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use(route);
