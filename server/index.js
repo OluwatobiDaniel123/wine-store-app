@@ -21,19 +21,25 @@ app.use(express.json());
 
 app.use(cors());
 
+const allowedOrigins = [
+  "http://localhost:3000", // Development frontend
+  "https://wine-store-app-client.vercel.app", // Production frontend
+];
+
 app.use(
   cors({
-    origin: "https://wine-store-app-client.vercel.app/", // Replace with your domain
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g., mobile apps, curl)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: "GET,POST,PUT,DELETE", // Allowed HTTP methods
-    credentials: true, // Allow cookies or authentication headers
+    credentials: true, // Allow cookies or credentials
   })
 );
-
-app.options("*", cors()); // Allow preflight for all routes
-
-app.get("/api/bestsellers", (req, res) => {
-  res.json({ message: "Bestsellers data" });
-});
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -61,6 +67,6 @@ mongoose
 //   cat: "Ruban",
 // }));
 
-// BestSellers.insertMany(products)
+// NewArrivalProduct.insertMany(products)
 //   .then(() => console.log("Products inserted successfully!"))
 //   .catch((error) => console.error("Error inserting products:", error));
