@@ -45,8 +45,14 @@ const SignIn = () => {
     if (Object.keys(errors).length === 0) {
       try {
         const { data } = await axios.post(
-          "http://localhost:5000/auth/login",
-          InputValue
+          "https://wine-store-app-server.vercel.app/auth/login",
+          InputValue,
+          {
+            withCredentials: true, // Include cookies if required by your backend
+            headers: {
+              "Content-Type": "application/json", // Ensure correct Content-Type
+            },
+          }
         );
 
         dispatch(
