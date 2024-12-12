@@ -17,47 +17,18 @@ const app = express();
 
 dotenv.config();
 
-app.use(
-  cors({
-    origin: "https://wine-store-app-client.vercel.app", // Allow only your frontend's domain
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Allow cookies if needed
-  })
-);
-
-app.use((req, res, next) => {
-  console.log("Headers received:", req.headers);
-  next();
-});
-
 app.use(express.json());
+
+app.use(cors());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use(route);
 
-// const products = Array.from({ length: 6 }, (_, index) => ({
-//   img: `https://wine-store-app-server.vercel.app/uploads/img-1.jpg`, // Dynamic image paths
-//   productName: ` Product Data ${index + 1}`,
-//   price: (Math.random() * 100).toFixed(2), // Random price between 0 and 100
-//   color: "Your Color",
-//   badge: index % 2 === 0, // Alternate badge value between true and false
-//   des: `Description for Product ${index + 1}`,
-//   cat: "Ruban",
-// }));
-
-// // Save all products at once using insertMany
-// BestSellers.insertMany(products)
-//   .then(() => console.log("100 products inserted successfully"))
-//   .catch((error) => console.error("Error inserting products:", error));
-
 const PORT = process.env.PORT || 5000;
 
 mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URL)
   .then(() => {
     app.listen(PORT, () =>
       console.log(`Server and MongoDB Started On Port: ${PORT}`)
@@ -65,3 +36,17 @@ mongoose
   })
 
   .catch((error) => console.log(`Server not connecting: ${error}`));
+
+// const products = Array.from({ length: 6 }, (_, index) => ({
+//   img: `https://picsum.photos/200?random=${index + 1}`, // Dynamic image fetching from Lorem Picsum
+//   productName: `Product Data ${index + 1}`,
+//   price: (Math.random() * 100).toFixed(2),
+//   color: "Your Color",
+//   badge: index % 2 === 0,
+//   des: `Description for Product ${index + 1}`,
+//   cat: "Ruban",
+// }));
+
+// BestSellers.insertMany(products)
+//   .then(() => console.log("Products inserted successfully!"))
+//   .catch((error) => console.error("Error inserting products:", error));
