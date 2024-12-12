@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "chrisalphawine app",
   "main": "index.js",
-  "proxy": [
-    "http://localhost:5000",
-    "https://wine-store-app-server.vercel.app"
-  ],
   "type": "module",
   "scripts": {
     "start": "node index.js",
