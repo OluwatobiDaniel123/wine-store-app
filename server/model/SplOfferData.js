@@ -18,12 +18,3 @@ const SplOfferDataSchema = new Schema(
 const SplOfferData = mongoose.model("SplOfferData", SplOfferDataSchema);
 
 export default SplOfferData;
-
-//  _id: "201",
-//     img: imprimante1,
-//     productName: "Printer",
-//     price: "35.00",
-//     color: "Blank and White",
-//     badge: true,
-//     des: "Lorelatest fashion trends, cutting-edge tech gadgets, or everyday essentials, we've got you covered.m ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-//     cat: "imprimante",

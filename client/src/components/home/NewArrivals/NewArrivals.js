@@ -44,11 +44,10 @@ const NewArrivals = () => {
   };
 
   useEffect(() => {
-    fetch("https://wine-store-app-server.vercel.app/api/bestsellers")
+    fetch("https://wine-store-app-server.vercel.app/api/NewArrivalProduct")
       .then((res) => res.json())
       .then((data) => {
         setNewArrival(data);
-        console.log(data);
       })
       .catch((err) => {
         console.log("Error fetching new arrivals:", err);

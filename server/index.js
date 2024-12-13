@@ -17,33 +17,26 @@ const app = express();
 
 dotenv.config();
 
-app.use(express.json());
+// app.use(
+//   cors({
+//     origin: "*",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
 
 app.use(cors());
 
-const allowedOrigins = [
-  "http://localhost:3000", // Development frontend
-  "https://wine-store-app-client.vercel.app", // Production frontend
-];
+app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (e.g., mobile apps, curl)
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: "GET,POST,PUT,DELETE", // Allowed HTTP methods
-    credentials: true, // Allow cookies or credentials
-  })
-);
+app.use(route, cors());
+
+app.get("/", (req, res) => {
+  res.json({ msg: "Hello world" });
+});
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-app.use(route);
 
 const PORT = process.env.PORT || 5000;
 

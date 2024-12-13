@@ -17,7 +17,6 @@ const BestSellers = () => {
       .then((res) => res.json())
       .then((data) => {
         setBestSeller(data);
-        console.log("Data fetched successfully:", data);
       })
       .catch((err) => {
         console.error("Error fetching data:", err);
@@ -35,7 +34,7 @@ const BestSellers = () => {
           >
             <Product
               _id={product._id}
-              img={product.img} // Assuming `img` is the URL of the product image
+              img={product.img}
               productName={product.productName}
               price={product.price}
               color={product.color}

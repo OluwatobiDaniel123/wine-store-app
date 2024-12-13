@@ -4,7 +4,6 @@ import BestSellers from "../model/BestSekllers.js";
 import Product from "../model/Product.js";
 import SplOfferData from "../model/SplOfferData.js";
 
-// POST: http://localhost:8080/api/transaction
 export const create_NewArrivalProduct = async (req, res) => {
   try {
     if (!req.body)
@@ -31,7 +30,6 @@ export const create_NewArrivalProduct = async (req, res) => {
   }
 };
 
-// GET: http://localhost:8080/api/transaction
 export const get_NewArrivalProduct = async (req, res) => {
   try {
     const data = await NewArrivalProduct.find({});
@@ -69,7 +67,6 @@ export const create_BestSellers = async (req, res) => {
   }
 };
 
-// GET: http://localhost:8080/api/transaction
 export const get_BestSellers = async (req, res) => {
   try {
     const data = await BestSellers.find({});
@@ -108,7 +105,6 @@ export const create_Product = async (req, res) => {
   }
 };
 
-// GET: http://localhost:8080/api/transaction
 export const get_Product = async (req, res) => {
   try {
     const data = await Product.find({});
@@ -148,7 +144,6 @@ export const create_SplOfferData = async (req, res) => {
   }
 };
 
-// GET: http://localhost:8080/api/transaction
 export const get_SplOfferData = async (req, res) => {
   try {
     const data = await SplOfferData.find({});
