@@ -25,6 +25,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/Account/Profile";
 import { useState, useEffect } from "react";
+import Login from "./pages/Account/Login";
 
 const Layout = () => {
   return (
@@ -68,7 +69,7 @@ const router = createBrowserRouter(
         <Route path="/paymentgateway" element={<Payment />}></Route>
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
-      <Route path="/signin" element={<SignIn />}></Route>
+      <Route path="/signin" element={<Login />}></Route>
     </Route>
   )
 );
