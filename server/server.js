@@ -19,11 +19,16 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+app.use(cors());
+
 app.get("/", (req, res) => {
   res.json({ greetings: "Hello from wine store" });
 });
 
+app.use(express.json());
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use(route);
 
 const PORT = process.env.PORT || 5000;
 
