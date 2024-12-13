@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "chrisalphawine app",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "server": "nodemon index.js",
+    "start": "node server.js",
+    "server": "nodemon server.js",
     "postinstall": "npm rebuild bcrypt --build-from-source"
   },
   "author": "Daniel",
