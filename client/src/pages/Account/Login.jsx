@@ -41,7 +41,6 @@ const Login = () => {
           <input
             type="email"
             name="email"
-            id=""
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -50,7 +49,6 @@ const Login = () => {
           <input
             type="password"
             name="password"
-            id=""
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
