@@ -19,7 +19,8 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(cors());
+// app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 app.get("/", (req, res) => {
   res.json({ greetings: "Hello from wine store" });
@@ -28,7 +29,15 @@ app.get("/", (req, res) => {
 app.use(express.json());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use(route);
+
+route.post("/auth/login", (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ error: "Email and password are required" });
+  }
+
+  res.json({ message: "Login successful" });
+});
 
 const PORT = process.env.PORT || 5000;
 
