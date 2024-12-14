@@ -23,6 +23,7 @@ const Login = () => {
     fetch("https://wine-store-app-backend.vercel.app/auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -41,6 +42,7 @@ const Login = () => {
           <input
             type="email"
             name="email"
+            id="email"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -49,6 +51,7 @@ const Login = () => {
           <input
             type="password"
             name="password"
+            id="password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>

@@ -48,9 +48,9 @@ const SignIn = () => {
           "https://wine-store-app-backend.vercel.app/?vercelToolbarCode=zmSET42-HJW1yRF/auth/login",
           InputValue,
           {
-            withCredentials: true, // Include cookies if required by your backend
+            withCredentials: true,
             headers: {
-              "Content-Type": "application/json", // Ensure correct Content-Type
+              "Content-Type": "application/json",
             },
           }
         );
@@ -87,14 +87,14 @@ const SignIn = () => {
           <Link to="/">
             <img src={logoLight} alt="logoImg" className="w-28" />
           </Link>
-          {/* Informational Section */}
+
           <div className="flex flex-col gap-1 -mt-1">
             <h1 className="font-titleFont text-xl font-medium">
               Stay sign in for more
             </h1>
             <p className="text-base">When you sign in, you are with us!</p>
           </div>
-          {/* Features List */}
+
           <div className="w-[300px] flex items-start gap-3">
             <span className="text-green-500 mt-1">
               <BsCheckCircleFill />
@@ -108,7 +108,7 @@ const SignIn = () => {
               personalized shopping.
             </p>
           </div>
-          {/* Footer */}
+
           <div className="flex items-center justify-between mt-10">
             <Link to="/">
               <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
@@ -146,7 +146,6 @@ const SignIn = () => {
                 Sign in
               </h1>
               <div className="flex flex-col gap-3">
-                {/* Email */}
                 <div className="flex flex-col gap-.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
                     Work Email
