@@ -23,7 +23,7 @@ const Login = () => {
     fetch("https://wine-store-app-backend.vercel.app/auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
-      credentials: "include",
+      // credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
