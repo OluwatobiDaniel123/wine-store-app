@@ -29,7 +29,7 @@ const SignIn = () => {
 
     console.log(InputValue);
 
-    fetch("https://wine-store-app-backend.vercel.app/api/auth/login", {
+    fetch("https://wine-store-app-backend.vercel.app/auth/login", {
       method: "POST",
       body: JSON.stringify(InputValue),
       headers: {

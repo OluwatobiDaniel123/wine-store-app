@@ -42,7 +42,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use(route);
 
-app.use("/api/auth", authRouter);
+// app.use("/api/auth", authRouter);
 
 const PORT = process.env.PORT || 5000;
 
