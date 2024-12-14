@@ -154,7 +154,10 @@ const SignIn = () => {
             </Link>
           </div>
         ) : (
-          <form className="w-full lgl:w-[450px] h-screen flex items-center justify-center">
+          <form
+            className="w-full lgl:w-[450px] h-screen flex items-center justify-center"
+            onSubmit={handleSignIn}
+          >
             <div className="px-6 py-4 w-full h-[90%] flex flex-col justify-center overflow-y-scroll scrollbar-thin scrollbar-thumb-primeColor">
               <h1 className="font-titleFont underline underline-offset-4 decoration-[1px] font-semibold text-3xl mdl:text-4xl mb-4">
                 Sign in
@@ -198,7 +201,7 @@ const SignIn = () => {
                   )}
                 </div>
                 <button
-                  onClick={handleSignIn}
+                  type="submit"
                   className="bg-primeColor hover:bg-black text-gray-200 hover:text-white cursor-pointer w-full text-base font-medium h-10 rounded-md duration-300"
                 >
                   Sign In
