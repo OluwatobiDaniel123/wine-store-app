@@ -33,19 +33,35 @@ const Login = () => {
     //   .then((data) => console.log(data))
     //   .catch((error) => console.error(error));
 
-    fetch(
-      "https://wine-store-app-backend.vercel.app/?vercelToolbarCode=H3KMHbnQm2JghTB/api/auth/login",
-      {
-        method: "POST",
-        body: JSON.stringify(newLogin),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error(error));
+    // const { data } = await axios.post(
+    //   "http://localhost:5000/api/auth/login",
+    //   newLogin
+    // );
+
+    // fetch(
+    //   "https://wine-store-app-server.vercel.app/?vercelToolbarCode=XHNTyrPkmSbLr1z/api/auth/login",
+    //   {
+    //     method: "POST",
+    //     body: JSON.stringify(newLogin),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // )
+    //   .then((response) => response.json())
+    //   .then((data) => console.log(data))
+    //   .catch((error) => console.error(error));
+
+    try {
+      const { data } = await axios.post(
+        "https://wine-store-app-backend.vercel.app/?vercelToolbarCode=L6Tr0MSeBNBfUH0/api/auth/login",
+        newLogin
+      );
+
+      console.log("Login Data>>>>>", data);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
