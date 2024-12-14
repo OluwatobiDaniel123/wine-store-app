@@ -45,7 +45,7 @@ const SignIn = () => {
     if (Object.keys(errors).length === 0) {
       try {
         const { data } = await axios.post(
-          "https://wine-store-app-backend.vercel.app/auth/login",
+          "https://wine-store-app-backend.vercel.app/api/auth/login",
 
           {
             method: "POST",
