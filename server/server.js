@@ -10,6 +10,7 @@ import BestSellers from "./model/BestSekllers.js";
 import NewArrivalProduct from "./model/NewArrivalProduct.js";
 import SplOfferData from "./model/SplOfferData.js";
 import { connectDB } from "./config/connection.js";
+import { authRouter } from "./routes/authRoutes.js";
 
 connectDB();
 
@@ -32,7 +33,9 @@ app.use(express.json());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.use(route);
+// app.use(route);
+
+app.use("/api/auth", authRouter);
 
 const PORT = process.env.PORT || 5000;
 

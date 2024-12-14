@@ -20,13 +20,29 @@ const Login = () => {
 
     const newLogin = { email, password };
 
-    fetch("https://wine-store-app-backend.vercel.app/auth/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    console.log(newLogin);
+
+    // fetch("http://localhost:5000/api/auth/login", {
+    //   method: "POST",
+    //   body: JSON.stringify(newLogin),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => console.log(data))
+    //   .catch((error) => console.error(error));
+
+    fetch(
+      "https://wine-store-app-backend.vercel.app/?vercelToolbarCode=H3KMHbnQm2JghTB/api/auth/login",
+      {
+        method: "POST",
+        body: JSON.stringify(newLogin),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.error(error));
