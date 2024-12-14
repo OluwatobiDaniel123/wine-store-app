@@ -2,8 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import cors from "cors";
-import mongoose from "mongoose";
-import route from "./routes/route.js";
+// import route from "./routes/route.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import Product from "./model/Product.js";
@@ -19,11 +18,9 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// app.use(cors());
 app.use(
   cors({
     origin: "*",
-    // credentials: true,
   })
 );
 
@@ -35,7 +32,7 @@ app.use(express.json());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-route.post("/auth/login", (req, res) => {
+app.post("/auth/login", (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({ error: "Email and password are required" });
