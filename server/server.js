@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import cors from "cors";
-// import route from "./routes/route.js";
+import route from "./routes/route.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import Product from "./model/Product.js";
@@ -32,14 +32,7 @@ app.use(express.json());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.post("/auth/login", (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(400).json({ error: "Email and password are required" });
-  }
-
-  res.json({ message: "Login successful" });
-});
+app.use(route);
 
 const PORT = process.env.PORT || 5000;
 
