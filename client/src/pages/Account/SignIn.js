@@ -27,58 +27,71 @@ const SignIn = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
 
-    const errors = {};
-    if (!InputValue.email) {
-      errors.errEmail = "Enter your Email";
-    } else if (!EmailValidation(InputValue.email)) {
-      errors.errEmail = "Enter a Valid Email";
-    }
+    console.log(InputValue);
 
-    if (!InputValue.password) {
-      errors.errPassword = "Enter your password";
-    } else if (InputValue.password.length < 6) {
-      errors.errPassword = "Passwords must be at least 6 characters";
-    }
+    fetch("https://wine-store-app-backend.vercel.app/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify(InputValue),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
 
-    setErrorInputValue(errors);
+    // const errors = {};
+    // if (!InputValue.email) {
+    //   errors.errEmail = "Enter your Email";
+    // } else if (!EmailValidation(InputValue.email)) {
+    //   errors.errEmail = "Enter a Valid Email";
+    // }
 
-    if (Object.keys(errors).length === 0) {
-      try {
-        const { data } = await axios.post(
-          "https://wine-store-app-backend.vercel.app/api/auth/login",
+    // if (!InputValue.password) {
+    //   errors.errPassword = "Enter your password";
+    // } else if (InputValue.password.length < 6) {
+    //   errors.errPassword = "Passwords must be at least 6 characters";
+    // }
 
-          {
-            method: "POST",
-            body: JSON.stringify({ InputValue }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+    // setErrorInputValue(errors);
 
-        dispatch(
-          UserInfo({
-            name: data.user.clientName,
-            email: data.user.email,
-            address: data.user.address,
-            city: data.user.city,
-            country: data.user.country,
-            phone: data.user.phone,
-          })
-        );
+    // if (Object.keys(errors).length === 0) {
+    //   try {
+    //     const { data } = await axios.post(
+    //       "https://wine-store-app-backend.vercel.app/api/auth/login",
 
-        dispatch(setCart(data.products || []));
+    //       {
+    //         method: "POST",
+    //         body: JSON.stringify({ InputValue }),
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //       }
+    //     );
 
-        setSuccessMsg(
-          `Hello ${InputValue.email}, Welcome to Chrisalphawine! We received your Sign In request.`
-        );
+    //     dispatch(
+    //       UserInfo({
+    //         name: data.user.clientName,
+    //         email: data.user.email,
+    //         address: data.user.address,
+    //         city: data.user.city,
+    //         country: data.user.country,
+    //         phone: data.user.phone,
+    //       })
+    //     );
 
-        toast.success("Sign in successful!");
-      } catch (error) {
-        console.log(error);
-        toast.error("Sign in failed. Please try again.");
-      }
-    }
+    //     dispatch(setCart(data.products || []));
+
+    //     setSuccessMsg(
+    //       `Hello ${InputValue.email}, Welcome to Chrisalphawine! We received your Sign In request.`
+    //     );
+
+    //     toast.success("Sign in successful!");
+    //   } catch (error) {
+    //     console.log(error);
+    //     toast.error("Sign in failed. Please try again.");
+    //   }
+    // }
   };
 
   return (
