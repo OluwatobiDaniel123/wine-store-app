@@ -13,15 +13,37 @@ const BestSellers = () => {
   const [bestSeller, setBestSeller] = useState([]);
 
   useEffect(() => {
-    fetch("https://wine-store-app-server.vercel.app/api/bestsellers")
-      .then((res) => res.json())
+    //   fetch("https://wine-store-app-backend.vercel.app/api/bestsellers")
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       setBestSeller(data);
+    //     })
+    //     .catch((err) => {
+    //       console.error("Error fetching data:", err);
+    //     });
+
+    fetch("https://wine-store-app-backend.vercel.app/api/bestsellers", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
       .then((data) => {
         setBestSeller(data);
       })
-      .catch((err) => {
-        console.error("Error fetching data:", err);
-      });
+      .catch((error) => console.error(error));
   }, []);
+
+  // fetch("https://wine-store-app-backend.vercel.app/api/bestsellers", {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // })
+  //   .then((response) => response.json())
+  //   .then((data) => console.log(data))
+  //   .catch((error) => console.error(error));
 
   return (
     <div className="w-full pb-20">
