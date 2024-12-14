@@ -58,6 +58,6 @@ app.listen(PORT, console.log(`Server started on port ${PORT}`));
 //   cat: "Ruban",
 // }));
 
-// BestSellers.insertMany(products)
+// Product.insertMany(products)
 //   .then(() => console.log("Products inserted successfully!"))
 //   .catch((error) => console.error("Error inserting products:", error));

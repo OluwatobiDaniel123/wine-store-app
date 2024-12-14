@@ -43,19 +43,31 @@ const Pagination = ({ itemsPerPage }) => {
   );
 
   useEffect(() => {
-    fetch("https://wine-store-app-server.vercel.app/api/product")
-      .then((res) => res.json())
+    // fetch("https://wine-store-app-server.vercel.app/api/product")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setNewProduct(data);
+    //     setFetchError(null);
+    //     setLoading(false);
+    //     console.log(data);
+    //   })
+    //   .catch((err) => {
+    //     console.error("Error fetching new arrivals:", err);
+    //     setFetchError("Failed to fetch products. Please try again later.");
+    //     setLoading(false);
+    //   });
+
+    fetch("https://wine-store-app-backend.vercel.app/api/product", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
       .then((data) => {
         setNewProduct(data);
-        setFetchError(null);
-        setLoading(false);
-        console.log(data);
       })
-      .catch((err) => {
-        console.error("Error fetching new arrivals:", err);
-        setFetchError("Failed to fetch products. Please try again later.");
-        setLoading(false);
-      });
+      .catch((error) => console.error(error));
   }, []);
 
   // const filteredItems = newProduct.filter((item) => {
