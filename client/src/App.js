@@ -69,7 +69,7 @@ const router = createBrowserRouter(
         <Route path="/paymentgateway" element={<Payment />}></Route>
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
-      <Route path="/signin" element={<Login />}></Route>
+      <Route path="/signin" element={<SignIn />}></Route>
     </Route>
   )
 );
