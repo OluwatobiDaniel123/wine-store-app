@@ -65,7 +65,11 @@ const Pagination = ({ itemsPerPage }) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
+
         setNewProduct(data);
+        setFetchError(null);
+        setLoading(false);
       })
       .catch((error) => console.error(error));
   }, []);
