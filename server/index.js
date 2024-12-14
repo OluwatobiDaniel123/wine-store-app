@@ -51,7 +51,7 @@ mongoose
   .catch((error) => console.log(`Server not connecting: ${error}`));
 
 // const products = Array.from({ length: 6 }, (_, index) => ({
-//   img: `https://picsum.photos/200?random=${index + 1}`, // Dynamic image fetching from Lorem Picsum
+//   img: `images/img.pngrandom=${index + 1}`, // Dynamic image fetching from Lorem Picsum
 //   productName: `Product Data ${index + 1}`,
 //   price: (Math.random() * 100).toFixed(2),
 //   color: "Your Color",

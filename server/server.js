@@ -47,3 +47,17 @@ app.use(route);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
+
+// const products = Array.from({ length: 6 }, (_, index) => ({
+//   img: `images/img-2.png/${index + 1}`,
+//   productName: `Product Data ${index + 1}`,
+//   price: (Math.random() * 100).toFixed(2),
+//   color: "Your Color",
+//   badge: index % 2 === 0,
+//   des: `Description for Product ${index + 1}`,
+//   cat: "Ruban",
+// }));
+
+// BestSellers.insertMany(products)
+//   .then(() => console.log("Products inserted successfully!"))
+//   .catch((error) => console.error("Error inserting products:", error));
