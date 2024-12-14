@@ -54,7 +54,7 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(
-        "https://wine-store-app-backend.vercel.app/?vercelToolbarCode=L6Tr0MSeBNBfUH0/api/auth/login",
+        "https://wine-store-app-backend.vercel.app/api/auth/login",
         newLogin
       );
 

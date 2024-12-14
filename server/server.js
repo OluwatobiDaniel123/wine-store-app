@@ -19,19 +19,19 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// app.use(
-//   cors({
-//     origin: "*",
-//   })
-// );
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json());
-const corsOptions = {
-  origin: "https://wine-store-app-client.vercel.app/",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: "https://wine-store-app-client.vercel.app/",
+//   credentials: true, //access-control-allow-credentials:true
+//   optionSuccessStatus: 200,
+// };
 
-app.use(cors());
+// app.use(cors());
 // app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
