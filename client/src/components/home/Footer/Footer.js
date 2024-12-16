@@ -4,7 +4,7 @@ import { FaFacebook, FaYoutube, FaLinkedin, FaGithub } from "react-icons/fa";
 import FooterListTitle from "./FooterListTitle";
 import { paymentCard } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
-
+import { CgMail } from "react-icons/cg";
 const Footer = () => {
   const [emailInfo, setEmailInfo] = useState("");
   const [subscription, setSubscription] = useState(false);
@@ -72,12 +72,12 @@ const Footer = () => {
                 </li>
               </a>
               <a
-                href="https://react-portfolio-ten-orcin.vercel.app/"
+                href="mailto:ChrisAlpha.wine.liquor@gmail.com"
                 target="_blank"
                 rel="noreferrer"
               >
                 <li className="w-7 h-7 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-lg rounded-full flex justify-center items-center hover:bg-black duration-300">
-                  <FaLinkedin />
+                  <CgMail />
                 </li>
               </a>
             </ul>
