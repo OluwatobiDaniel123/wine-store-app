@@ -43,20 +43,6 @@ const Pagination = ({ itemsPerPage }) => {
   );
 
   useEffect(() => {
-    // fetch("https://wine-store-app-server.vercel.app/api/product")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setNewProduct(data);
-    //     setFetchError(null);
-    //     setLoading(false);
-    //     console.log(data);
-    //   })
-    //   .catch((err) => {
-    //     console.error("Error fetching new arrivals:", err);
-    //     setFetchError("Failed to fetch products. Please try again later.");
-    //     setLoading(false);
-    //   });
-
     fetch("https://wine-store-app-backend.vercel.app/api/product", {
       method: "GET",
       headers: {
@@ -73,30 +59,6 @@ const Pagination = ({ itemsPerPage }) => {
       })
       .catch((error) => console.error(error));
   }, []);
-
-  // const filteredItems = newProduct.filter((item) => {
-  //   const isBrandSelected =
-  //     selectedBrands.length === 0 ||
-  //     selectedBrands.some((brand) => brand.title === item.brand);
-
-  //   const isCategorySelected =
-  //     selectedCategories.length === 0 ||
-  //     selectedCategories.some((category) => category.title === item.cat);
-  //   console.log("Item:", item);
-  //   console.log("Brand Match:", isBrandSelected);
-  //   console.log("Category Match:", isCategorySelected);
-
-  //   return isBrandSelected && isCategorySelected;
-  // });
-  // const filteredItems = newProduct.filter((item) => {
-  //   const isBrandSelected =
-  //     selectedBrands.length === 0 ||
-  //     selectedBrands.some((brand) => brand.title === item.brand);
-  //   console.log("Item Category:", item.cat);
-  //   console.log("Selected Categories:", selectedCategories);
-
-  //   return isBrandSelected; // Skip category filter
-  // });
 
   const [filterCategories, setFilterCategories] = useState(false);
 
@@ -129,7 +91,9 @@ const Pagination = ({ itemsPerPage }) => {
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-10 mdl:gap-4 lg:gap-10 ">
         {fetchError && <p className="text-red-500">{fetchError}</p>}
         {loading ? (
-          <p className="text-center">Loading...</p>
+          <div>
+            <div className="spinner-grow m-5" role="status"></div>
+          </div>
         ) : filteredItems.length === 0 ? (
           <p className="text-center text-gray-500">No products found</p>
         ) : (

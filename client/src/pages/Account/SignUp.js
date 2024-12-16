@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { logoLight } from "../../assets/images";
-import axios from "axios";
 import { useDispatch } from "react-redux";
-import { registerUser, UserInfo } from "../../redux/orebiSlice";
+import { useNavigate } from "react-router-dom";
+import { UserInfo } from "../../redux/orebiSlice";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const InitialValue = {
@@ -20,6 +21,8 @@ const SignUp = () => {
   };
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [InputValue, setInputValue] = useState(InitialValue);
   const [ErrorInputValue, setErrorInputValue] = useState({});
   const [successMsg, setSuccessMsg] = useState("");
@@ -73,29 +76,25 @@ const SignUp = () => {
 
     setErrorInputValue(errors);
 
-    if (Object.keys(errors).length === 0) {
-      try {
-        const { data } = await axios.post(
-          "https://wine-store-app-backend.vercel.app/auth/login",
-          {
-            method: "POST",
-            body: JSON.stringify({ InputValue }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
+    fetch("https://wine-store-app-backend.vercel.app/auth/register", {
+      method: "POST",
+      body: JSON.stringify(InputValue),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
         console.log(data);
-
+        if (data) {
+          navigate("/signin");
+        } else {
+          console.error("Registration failed:", data.message);
+        }
         dispatch(UserInfo(data));
-        setSuccessMsg(
-          `Hello dear ${InputValue.clientName}, Welcome to OREBI. We received your Sign up request. Stay connected, and further assistance will be sent to you at ${InputValue.email}`
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    }
+        toast.success("Registered Login now!");
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -179,7 +178,10 @@ const SignUp = () => {
             </Link>
           </div>
         ) : (
-          <form className="w-full lgl:w-[500px] h-screen flex items-center justify-center">
+          <form
+            onSubmit={handleSignUp}
+            className="w-full lgl:w-[500px] h-screen flex items-center justify-center"
+          >
             <div className="px-6 py-4 w-full h-[96%] flex flex-col justify-start overflow-y-scroll scrollbar-thin scrollbar-thumb-primeColor">
               <h1 className="font-titleFont underline underline-offset-4 decoration-[1px] font-semibold text-2xl mdl:text-3xl mb-4">
                 Create your account
@@ -361,7 +363,7 @@ const SignUp = () => {
                   </p>
                 </div>
                 <button
-                  onClick={handleSignUp}
+                  type="submit"
                   className={`${
                     InputValue.checked
                       ? "bg-primeColor hover:bg-black hover:text-white cursor-pointer"

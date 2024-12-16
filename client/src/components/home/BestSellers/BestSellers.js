@@ -1,27 +1,11 @@
 import React, { useEffect, useState } from "react";
-
 import Heading from "../Products/Heading";
 import Product from "../Products/Product";
-import {
-  bestSellerOne,
-  bestSellerTwo,
-  bestSellerThree,
-  bestSellerFour,
-} from "../../../assets/images/index";
 
 const BestSellers = () => {
   const [bestSeller, setBestSeller] = useState([]);
 
   useEffect(() => {
-    //   fetch("https://wine-store-app-backend.vercel.app/api/bestsellers")
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       setBestSeller(data);
-    //     })
-    //     .catch((err) => {
-    //       console.error("Error fetching data:", err);
-    //     });
-
     fetch("https://wine-store-app-backend.vercel.app/api/bestsellers", {
       method: "GET",
       headers: {
@@ -34,16 +18,6 @@ const BestSellers = () => {
       })
       .catch((error) => console.error(error));
   }, []);
-
-  // fetch("https://wine-store-app-backend.vercel.app/api/bestsellers", {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // })
-  //   .then((response) => response.json())
-  //   .then((data) => console.log(data))
-  //   .catch((error) => console.error(error));
 
   return (
     <div className="w-full pb-20">

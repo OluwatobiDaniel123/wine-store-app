@@ -36,7 +36,6 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate the form inputs
     let isValid = true;
 
     if (!InputValue.clientName) {
@@ -57,7 +56,6 @@ const Contact = () => {
       isValid = false;
     }
 
-    // If validation passes, send the email
     if (isValid) {
       const templateParams = {
         client_name: InputValue.clientName,
@@ -78,7 +76,6 @@ const Contact = () => {
             setSuccessMsg(
               `Thank you dear ${InputValue.clientName}, your message has been received successfully. Further details will be sent to your email at ${InputValue.email}.`
             );
-            // Reset form values
           },
           (error) => {
             console.error(error.text);

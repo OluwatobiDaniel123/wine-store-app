@@ -6,10 +6,6 @@ const About = () => {
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState("");
 
-  // useEffect(() => {
-  //   setPrevLocation(location.state.data);
-  // }, [location]);
-
   return (
     <div className="max-w-container bg-[#eeeefc] mx-auto px-4">
       <Breadcrumbs title="About" prevLocation={prevLocation} />

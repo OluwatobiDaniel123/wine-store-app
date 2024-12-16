@@ -33,7 +33,7 @@ export const orebiSlice = createSlice({
       } else {
         state.products.push(action.payload);
       }
-      // Dispatch a success toast
+   
       toast.success("Product added to cart");
     },
     increaseQuantity: (state, action) => {
@@ -42,7 +42,7 @@ export const orebiSlice = createSlice({
       );
       if (item) {
         item.quantity++;
-        // Dispatch a success toast
+     
       }
     },
     drecreaseQuantity: (state, action) => {
@@ -53,14 +53,14 @@ export const orebiSlice = createSlice({
         item.quantity = 1;
       } else {
         item.quantity--;
-        // Dispatch a success toast
+        
       }
     },
     deleteItem: (state, action) => {
       state.products = state.products.filter(
         (item) => item._id !== action.payload
       );
-      // Dispatch a success toast
+
       toast.error("Product removed from cart");
     },
 
@@ -70,7 +70,7 @@ export const orebiSlice = createSlice({
 
     resetCart: (state) => {
       state.products = [];
-      // Dispatch a success toast
+     
     },
 
     toggleBrand: (state, action) => {
@@ -103,13 +103,13 @@ export const orebiSlice = createSlice({
       }
     },
     UserInfo: (state, action) => {
-      state.user = action.payload; // Update user with payload (name and email)
-      state.isAuthenticated = true; // Set authenticated state to true
+      state.user = action.payload; 
+      state.isAuthenticated = true; 
     },
 
     LogOutUser: (state) => {
-      state.user = { name: "", email: "" }; // Reset user info
-      state.isAuthenticated = false; // Set authentication to false
+      state.user = { name: "", email: "" };
+      state.isAuthenticated = false; 
     },
 
     setCheckoutData: (state, action) => {

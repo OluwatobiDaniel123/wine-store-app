@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -9,6 +9,7 @@ import { logoLight } from "../../assets/images";
 import { setCart } from "../../redux/orebiSlice";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch(); // Hook to dispatch Redux actions
   const [InputValue, setInputValue] = useState({ email: "", password: "" });
   const [ErrorInputValue, setErrorInputValue] = useState({});
@@ -27,8 +28,6 @@ const SignIn = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
 
-    console.log(InputValue);
-
     fetch("https://wine-store-app-backend.vercel.app/auth/login", {
       method: "POST",
       body: JSON.stringify(InputValue),
@@ -37,61 +36,43 @@ const SignIn = () => {
       },
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        if (data) {
+          navigate("/profile");
+        } else {
+          console.error("Login failed:", data.message);
+        }
+        dispatch(
+          UserInfo({
+            name: data.user.clientName,
+            email: data.user.email,
+            address: data.user.address,
+            city: data.user.city,
+            country: data.user.country,
+            phone: data.user.phone,
+          })
+        );
+
+        dispatch(setCart(data.products || []));
+        toast.success("Login successful!");
+      })
       .catch((error) => console.error(error));
 
-    // const errors = {};
-    // if (!InputValue.email) {
-    //   errors.errEmail = "Enter your Email";
-    // } else if (!EmailValidation(InputValue.email)) {
-    //   errors.errEmail = "Enter a Valid Email";
-    // }
+    const errors = {};
+    if (!InputValue.email) {
+      errors.errEmail = "Enter your Email";
+    } else if (!EmailValidation(InputValue.email)) {
+      errors.errEmail = "Enter a Valid Email";
+    }
 
-    // if (!InputValue.password) {
-    //   errors.errPassword = "Enter your password";
-    // } else if (InputValue.password.length < 6) {
-    //   errors.errPassword = "Passwords must be at least 6 characters";
-    // }
+    if (!InputValue.password) {
+      errors.errPassword = "Enter your password";
+    } else if (InputValue.password.length < 6) {
+      errors.errPassword = "Passwords must be at least 6 characters";
+    }
 
-    // setErrorInputValue(errors);
-
-    // if (Object.keys(errors).length === 0) {
-    //   try {
-    //     const { data } = await axios.post(
-    //       "https://wine-store-app-backend.vercel.app/api/auth/login",
-
-    //       {
-    //         method: "POST",
-    //         body: JSON.stringify({ InputValue }),
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //       }
-    //     );
-
-    //     dispatch(
-    //       UserInfo({
-    //         name: data.user.clientName,
-    //         email: data.user.email,
-    //         address: data.user.address,
-    //         city: data.user.city,
-    //         country: data.user.country,
-    //         phone: data.user.phone,
-    //       })
-    //     );
-
-    //     dispatch(setCart(data.products || []));
-
-    //     setSuccessMsg(
-    //       `Hello ${InputValue.email}, Welcome to Chrisalphawine! We received your Sign In request.`
-    //     );
-
-    //     toast.success("Sign in successful!");
-    //   } catch (error) {
-    //     console.log(error);
-    //     toast.error("Sign in failed. Please try again.");
-    //   }
-    // }
+    setErrorInputValue(errors);
   };
 
   return (

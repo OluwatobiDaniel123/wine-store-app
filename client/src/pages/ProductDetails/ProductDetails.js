@@ -29,7 +29,6 @@ const tabs = [
       ></iframe>
     ),
   },
-  // Add more tabs as needed
 ];
 
 const ProductDetails = () => {

@@ -94,19 +94,18 @@ function App() {
 
   const handleVerification = (isOver19) => {
     if (isOver19) {
-      const expirationPeriod = 5 * 60 * 1000; // 7 days in milliseconds
-      const expiry = new Date().getTime() + expirationPeriod; // Current time + expiration period
+      const expirationPeriod = 5 * 60 * 1000;
+      const expiry = new Date().getTime() + expirationPeriod;
 
-      // Save verification status and expiration time to localStorage
       localStorage.setItem(
         "ageVerification",
         JSON.stringify({ verified: true, expiry })
       );
     } else {
       alert("You must be over 18 to access this site.");
-      window.location.href = "https://google.com"; // Redirect if underage
+      window.location.href = "https://google.com";
     }
-    setShowPopup(false); // Close the popup
+    setShowPopup(false);
   };
 
   return (

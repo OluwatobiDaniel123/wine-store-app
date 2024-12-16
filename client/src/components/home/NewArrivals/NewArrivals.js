@@ -44,20 +44,24 @@ const NewArrivals = () => {
   };
 
   useEffect(() => {
-    fetch("https://wine-store-app-server.vercel.app/api/NewArrivalProduct")
-      .then((res) => res.json())
+    fetch("https://wine-store-app-backend.vercel.app/api/NewArrivalProduct", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
       .then((data) => {
+        console.log(data);
+
         setNewArrival(data);
       })
-      .catch((err) => {
-        console.log("Error fetching new arrivals:", err);
-      });
+      .catch((error) => console.error(error));
   }, []);
 
   return (
     <div className="w-full h-3/5 pb-16">
       <Heading heading="New Arrivals" />
-      <span>No Product For Now</span>
 
       <Slider {...settings}>
         {newArrival?.map((product, i) => (
@@ -67,7 +71,7 @@ const NewArrivals = () => {
           >
             <Product
               _id={product._id}
-              img={product.img} // Assuming `img` is the URL of the product image
+              img={product.img}
               productName={product.productName}
               price={product.price}
               color={product.color}

@@ -4,7 +4,7 @@ import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { FaSearch, FaUser, FaCaretDown, FaShoppingCart } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { paginationItems } from "../../../constants";
 import { BsSuitHeartFill } from "react-icons/bs";
 
@@ -87,6 +87,7 @@ const HeaderBottom = () => {
               className="flex-1 h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
               type="text"
               // onChange={handleSearch}
+              readOnly
               value={searchQuery}
               placeholder="Search your products here"
             />

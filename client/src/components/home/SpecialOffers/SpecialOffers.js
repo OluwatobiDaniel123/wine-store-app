@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Heading from "../Products/Heading";
 import Product from "../Products/Product";
-// import { SplOfferData } from "../../../constants";
 import { useParams } from "react-router-dom";
 
 const SpecialOffers = () => {
@@ -9,14 +8,19 @@ const SpecialOffers = () => {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000//api/specialofferdata")
-      .then((res) => res.json())
-      .then((SplOfferData) => {
-        setData(SplOfferData);
+    fetch("https://wine-store-app-backend.vercel.app/api/specialofferdata", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data2) => {
+        console.log(data2);
+
+        setData(data2);
       })
-      .catch((err) => {
-        console.log("Error fetching new arrivals:", err);
-      });
+      .catch((error) => console.error(error));
   }, []);
 
   const catData = data.filter((item) => item.cat === category);
@@ -26,20 +30,6 @@ const SpecialOffers = () => {
       <Heading heading="Special Offers" />
 
       <div className="w-full  grid grid-cols-1 md:grid-cols-2 lgl:grid-cols-3 xl:grid-cols-3 gap-10">
-        {/* {data &&
-          catData.map((data) => (
-            <Product
-              key={data._id}
-              _id={data._id}
-              img={data.img}
-              productName={data.productName}
-              price={data.price}
-              color={data.color}
-              badge={true}
-              des={data.des}
-            />
-          ))} */}
-        {/* [...(data || []), ...(catData || [])].map((data) */}
         {[...(data || []), ...(catData || [])]
           .filter(
             (value, index, self) =>
