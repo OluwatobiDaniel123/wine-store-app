@@ -65,10 +65,10 @@ const Contact = () => {
 
       emailjs
         .send(
-          "service_qh08omd",
-          "template_icla7gq",
+          "service_u7fvfoh",
+          "template_31sa3xc",
           templateParams,
-          "uDj1nlX9BVEqunnYs"
+          "k3UGxcY6vWIYcE45Y"
         )
         .then(
           (result) => {
@@ -94,7 +94,7 @@ const Contact = () => {
           <h1 className="font-titleFont font-semibold text-3xl">
             Fill up a Form
           </h1>
-          <div className="w-[500px] h-auto py-6 flex flex-col gap-6">
+          <div className="w-[500px] max-md:w-full h-auto py-6 flex flex-col gap-6">
             <div>
               <p className="text-base font-titleFont font-semibold px-2">
                 Name

@@ -327,7 +327,7 @@ const SignUp = () => {
                     </p>
                   )}
                 </div>
-                {/* Zip code */}
+
                 <div className="flex flex-col gap-.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
                     Zip/Postal code
@@ -347,7 +347,6 @@ const SignUp = () => {
                     </p>
                   )}
                 </div>
-                {/* Checkbox */}
                 <div className="flex items-start mdl:items-center gap-2">
                   <input
                     onChange={HandleInputValue}
@@ -357,7 +356,7 @@ const SignUp = () => {
                     name="checked"
                   />
                   <p className="text-sm text-primeColor">
-                    I agree to the OREBI{" "}
+                    I agree to the CHRISALPHAWINE{" "}
                     <span className="text-blue-500">Terms of Service </span>
                     and <span className="text-blue-500">Privacy Policy</span>.
                   </p>

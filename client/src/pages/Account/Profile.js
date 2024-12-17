@@ -32,38 +32,38 @@ const Profile = () => {
   };
 
   return (
-    <div className="text-center">
-      <h1 className="font-sans text-blue-800 p-4 font-bold text-2xl">
-        ACCOUNT DETAILS{" "}
-      </h1>
+    <div className="">
+      <div className="flex border-2 justify-between">
+        <h1 className="font-sans text-blue-800 p-4 font-bold text-xl">
+          ACCOUNT DETAILS{" "}
+        </h1>
+        <FaUserCircle className="text-7xl p-4" />
+      </div>
 
-      <div className="   ">
-        <div className=" border-4 p-6  font-extrabold">
-          <FaUserCircle className="text-9xl p-2" />
-          <div>
-            <h3 className="text-3xl font-semibold text-blue-800 ">About Me</h3>
-            <div className="flex justify-between h-72">
-              <div className="border-4 p-6 w-96">
-                <h1>Welcome, {name}</h1>
-                <p>Email: {email}</p>
-              </div>
-              <div className="border-4 p-6 w-96">
-                <p>Address: {address}</p>
-                <p>City: {city}</p>
-                <p>Country: {country}</p>
-                <p>Phone No: {phone}</p>
-              </div>
+      <div className="  p-6  font-extrabold">
+        <div>
+          <h3 className="text-3xl font-semibold text-blue-800 ">About Me</h3>
+          <div className="flex flex-col gap-6 justify-between">
+            <div className="shadow-xl rounded-md h-64 p-6 ">
+              <h1>Welcome, {name}</h1>
+              <p>Email: {email}</p>
             </div>
+
+            <div className="shadow-xl rounded-md h-64 p-6 ">
+              <p>Address: {address}</p>
+              <p>City: {city}</p>
+              <p>Country: {country}</p>
+              <p>Phone No: {phone}</p>
+            </div>
+            <button
+              className="bg-[#0f0f59] rounded-lg text-white text-lg font-bodyFont w-[185px] h-[50px] hover:bg-[#05052e] duration-300 font-bold"
+              onClick={HandleLogOut}
+            >
+              LogOut
+            </button>
           </div>
         </div>
       </div>
-
-      <button
-        className="bg-[#0f0f59] rounded-lg text-white text-lg font-bodyFont w-[185px] h-[50px] hover:bg-[#05052e] duration-300 font-bold"
-        onClick={HandleLogOut}
-      >
-        LogOut
-      </button>
     </div>
   );
 };

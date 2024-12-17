@@ -46,7 +46,7 @@ const HeaderBottom = () => {
           <div
             onClick={() => setShow(!show)}
             ref={ref}
-            className="flex h-14 cursor-pointer items-center gap-2 text-primeColor"
+            className="flex h-10 cursor-pointer items-center gap-2 text-primeColor"
           >
             <HiOutlineMenuAlt4 className="w-5 h-5" />
             <p className="text-[14px] font-normal">Shop by Category</p>
@@ -161,9 +161,12 @@ const HeaderBottom = () => {
                     Sign Up
                   </li>
                 </Link>
-                <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                  Profile
-                </li>
+                <Link to="/profile">
+                  <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                    Profile
+                  </li>
+                </Link>
+
                 <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-white hover:text-white duration-300 cursor-pointer">
                   Others
                 </li>

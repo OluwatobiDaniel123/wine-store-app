@@ -1,8 +1,9 @@
-import logo from "./orebiLogo-2.jpg";
-import logoLight from "./orebiLogo-2.jpg";
+import logo from "./Logo.jpg";
+import logoLight from "./Logo.jpg";
 import bannerImgOne from "./banner/bannerImgOne.webp";
 import bannerImgTwo from "./banner/bannerImgTwo.webp";
 import bannerImgThree from "./banner/bannerImgThree.webp";
+
 import drinks from "../images/drink-2.jpg";
 import drink_1 from "../images/drink-1.jpg";
 import drink_4 from "../images/drink_4.jpg";

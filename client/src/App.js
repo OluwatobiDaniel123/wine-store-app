@@ -25,7 +25,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/Account/Profile";
 import { useState, useEffect } from "react";
-import Login from "./pages/Account/Login";
 
 const Layout = () => {
   return (
@@ -78,18 +77,16 @@ function App() {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    // Check localStorage for age verification status and expiration
     const storedData = localStorage.getItem("ageVerification");
     if (storedData) {
       const { verified, expiry } = JSON.parse(storedData);
 
-      // Check if the stored data has expired
       if (verified && new Date().getTime() < expiry) {
-        setShowPopup(false); // User is verified and within the expiration period
+        setShowPopup(false);
         return;
       }
     }
-    setShowPopup(true); // Show popup if not verified or expired
+    setShowPopup(true);
   }, []);
 
   const handleVerification = (isOver19) => {
@@ -118,7 +115,7 @@ function App() {
             left: 0,
             width: "100vw",
             height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.1)", // Very transparent
+            backgroundColor: "rgba(0, 0, 0, 0.1)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",

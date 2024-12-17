@@ -102,9 +102,9 @@ const Banner = () => {
   const slides = [
     {
       imgSrc: bannerImgOne,
-      text: "Whisky-drinks",
+      text: "Whisky",
       Subtext:
-        "Escape the Ordinary, Embrace the ExtraordinarySidekick to Your Adventures ",
+        " We are a Packing and Moving company that offer varied moving services such as home and office,and delivery services.  ",
       buttonLink: "/shop",
       buttonText: "Shop Now",
     },
