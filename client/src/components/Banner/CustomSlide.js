@@ -27,7 +27,7 @@ const CustomSlide = ({ text, Subtext, buttonText, buttonLink }) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "450px",
+          height: "100vh",
         }}
       >
         <div style={{ padding: "15px" }}>

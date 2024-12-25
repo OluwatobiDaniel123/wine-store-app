@@ -31,8 +31,9 @@ const Header = () => {
       <nav className="h-full  max-w-container mx-auto relative">
         <Flex className="flex items-center justify-between h-full">
           <Link to="/">
-            <div>
-              <Image className="w-14 p-2 object-cover" imgSrc={logo} />
+            <div className="flex items-center">
+              <Image className="w-14 object-cover" imgSrc={logo} />
+              <h5 className="font-mono font-bold ">Chrisalphawine</h5>
             </div>
           </Link>
           <div>

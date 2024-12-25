@@ -25,6 +25,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/Account/Profile";
 import { useState, useEffect } from "react";
+import LockedPage from "./pages/Lock_Page/Lock_Page";
 
 const Layout = () => {
   return (
@@ -54,14 +55,15 @@ const Layout = () => {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/" element={<Layout />}>
-        {/* ==================== Header Navlink Start here =================== */}
+      <Route path="/" element={<LockedPage />}>
+        {/* <Route path="/" element={<Layout />}> */}
+
         <Route index element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
-        {/* ==================== Header Navlink End here ===================== */}
+
         <Route path="/category/:category" element={<Offer />}></Route>
         <Route path="/product/:_id" element={<ProductDetails />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
