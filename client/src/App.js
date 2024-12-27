@@ -55,15 +55,13 @@ const Layout = () => {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/" element={<LockedPage />}>
-        {/* <Route path="/" element={<Layout />}> */}
-
+      {/* <Route path="/" element={<LockedPage />}> */}
+      <Route path="/" element={<Layout />}>
         <Route index element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
-
         <Route path="/category/:category" element={<Offer />}></Route>
         <Route path="/product/:_id" element={<ProductDetails />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
