@@ -25,15 +25,3 @@ const LockedPage = () => {
 };
 
 export default LockedPage;
-// import React from "react";
-// import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-
-// const App = () => {
-//   return (
-//     <DotLottieReact
-//       src="https://lottie.host/113aa8aa-b464-41a9-be0f-906d7a2d63b8/SSzUfeyU3r.lottie"
-//       loop
-//       autoplay
-//     />
-//   );
-// };

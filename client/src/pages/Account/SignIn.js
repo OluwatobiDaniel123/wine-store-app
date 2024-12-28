@@ -4,13 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { UserInfo } from "../../redux/orebiSlice"; // Adjust the path as per your project structure
+import { UserInfo } from "../../redux/orebiSlice";
 import { logoLight } from "../../assets/images";
 import { setCart } from "../../redux/orebiSlice";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // Hook to dispatch Redux actions
+  const dispatch = useDispatch();
   const [InputValue, setInputValue] = useState({ email: "", password: "" });
   const [ErrorInputValue, setErrorInputValue] = useState({});
   const [successMsg, setSuccessMsg] = useState("");

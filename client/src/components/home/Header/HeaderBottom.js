@@ -5,7 +5,7 @@ import { FaSearch, FaUser, FaCaretDown, FaShoppingCart } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { paginationItems } from "../../../constants";
+// import { paginationItems } from "../../../constants";
 import { BsSuitHeartFill } from "react-icons/bs";
 
 const HeaderBottom = () => {
@@ -32,12 +32,12 @@ const HeaderBottom = () => {
     setSearchQuery(e.target.value);
   };
 
-  useEffect(() => {
-    const filtered = paginationItems.filter((item) =>
-      item.productName.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredProducts(filtered);
-  }, [searchQuery]);
+  // useEffect(() => {
+  //   const filtered = paginationItems.filter((item) =>
+  //     item.productName.toLowerCase().includes(searchQuery.toLowerCase())
+  //   );
+  //   setFilteredProducts(filtered);
+  // }, [searchQuery]);
 
   return (
     <div className="w-full bg-[#eeeefc] relative">

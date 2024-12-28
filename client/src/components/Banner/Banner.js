@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import { bannerImgOne } from "../../assets/images";
+import { drink3 } from "../../assets/images";
 
 import CustomSlide from "./CustomSlide";
 
@@ -101,7 +101,7 @@ const Banner = () => {
 
   const slides = [
     {
-      imgSrc: bannerImgOne,
+      imgSrc: drink3,
       text: "Whisky",
       Subtext:
         " We are a Packing and Moving company that offer varied moving services such as home and office,and delivery services.  ",
@@ -109,7 +109,7 @@ const Banner = () => {
       buttonText: "Shop Now",
     },
     {
-      imgSrc: bannerImgOne,
+      imgSrc: drink3,
       text: "Red-Wine",
       Subtext:
         "Wine That Epitomizes Professional Excellence Sidekick to Your Adventures .",
@@ -117,7 +117,7 @@ const Banner = () => {
       buttonText: "About-us",
     },
     {
-      imgSrc: bannerImgOne,
+      imgSrc: drink3,
       text: "Non-Alcholic",
       Subtext:
         "Wine: The Coolest Sidekick to Your Adventures Sidekick to Your Adventures ",

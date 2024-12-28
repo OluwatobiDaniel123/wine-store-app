@@ -7,6 +7,7 @@ import { resetCart, setCheckoutData } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
 import ItemCard from "./ItemCard";
 import Total from "./Total";
+import { TbCurrencyNaira } from "react-icons/tb";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -70,14 +71,16 @@ const Cart = () => {
               <div>
                 <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
                   Subtotal
-                  <span className="font-semibold tracking-wide font-titleFont">
-                    ${checkoutData.totalAmt}
+                  <span className="font-semibold flex items-center tracking-wide font-titleFont">
+                    <TbCurrencyNaira />
+                    {checkoutData.totalAmt}
                   </span>
                 </p>
                 <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
                   Shipping Charge
-                  <span className="font-semibold tracking-wide font-titleFont">
-                    ${checkoutData.shippingCharge}
+                  <span className="font-semibold flex items-center tracking-wide font-titleFont">
+                    <TbCurrencyNaira />
+                    {checkoutData.shippingCharge}
                   </span>
                 </p>
                 <Total />

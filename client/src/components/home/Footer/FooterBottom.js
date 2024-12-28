@@ -13,13 +13,9 @@ const FooterBottom = () => {
             ChrisAlpha wine & liquor store Limited | 2024 | All Rights Reserved
             |
           </p>
-          <a
-            href="https://react-portfolio-ten-orcin.vercel.app/"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://danovalab.com/" target="_blank" rel="noreferrer">
             <span className="ml-1 font-medium text-white group-hover:text-sky-700">
-              Powered by danetech
+              Powered by danovalab
             </span>
           </a>
         </h6>

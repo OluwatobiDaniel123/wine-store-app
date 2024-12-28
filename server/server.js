@@ -3,9 +3,6 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import route from "./routes/route.js";
-import path from "path";
-import { fileURLToPath } from "url";
-import multer from "multer";
 import Product from "./model/Product.js";
 import BestSellers from "./model/BestSekllers.js";
 import NewArrivalProduct from "./model/NewArrivalProduct.js";
@@ -34,14 +31,17 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
 
 // const products = Array.from({ length: 26 }, (_, index) => ({
-//   img: `https://placekitten.com/200/300${index + 1}`,
-//   productName: `Product Data ${index + 1}`,
-//   price: (Math.random() * 100).toFixed(2),
-//   color: "Your Color",
+//   img: `https://picsum.photos/200/300?random=${index + 1}`,
+//   productName: `Wine Bottle ${index + 1}`,
+//   price: Number((Math.random() * 10000 + 2000).toFixed(2)),
+//   color: ["Red", "White", "Rose", "Sparkling"][index % 4],
 //   badge: index % 2 === 0,
-//   des: `Description for Product ${index + 1}`,
-//   cat: "Ruban",
+//   des: `A premium selection of ${
+//     ["red", "white", "rose", "sparkling"][index % 4]
+//   } wine. Perfect for celebrations and fine dining.`,
+//   cat: ["Cabernet Sauvignon", "Chardonnay", "Merlot", "Pinot Noir"][index % 4],
 // }));
+
 // Product.insertMany(products)
-//   .then(() => console.log("Products inserted successfully!"))
-//   .catch((error) => console.error("Error inserting products:", error));
+//   .then(() => console.log("Wine products inserted successfully!"))
+//   .catch((error) => console.error("Error inserting wine products:", error));
