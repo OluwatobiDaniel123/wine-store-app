@@ -55,8 +55,8 @@ const Layout = () => {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      {/* <Route path="/" element={<LockedPage />}> */}
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<LockedPage />}>
+        {/* <Route path="/" element={<Layout />}> */}
         <Route index element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/about" element={<About />}></Route>
