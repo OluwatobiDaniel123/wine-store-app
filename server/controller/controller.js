@@ -3,6 +3,8 @@ import NewArrivalProduct from "../model/NewArrivalProduct.js";
 import BestSellers from "../model/BestSekllers.js";
 import Product from "../model/Product.js";
 import SplOfferData from "../model/SplOfferData.js";
+import path from "path";
+import User from "../model/User.js";
 
 export const create_NewArrivalProduct = async (req, res) => {
   try {
@@ -81,27 +83,50 @@ export const get_BestSellers = async (req, res) => {
 
 export const create_Product = async (req, res) => {
   try {
-    if (!req.body) return res.status(400).json("Product Data fail to Get");
-    const { productName, price, color, badge, des } = req.body;
+    if (!req.body.products || !req.files) {
+      return res.status(400).json({ message: "Invalid request data" });
+    }
 
-    const img = req.file.path;
+    const parsedProducts = req.body.products.map((product) =>
+      JSON.parse(product)
+    );
+    const files = req.files;
 
-    const newProduct = new Product({
-      img,
-      productName,
-      price,
-      color,
-      badge,
-      des,
+    if (parsedProducts.length !== files.length) {
+      return res
+        .status(400)
+        .json({ message: "Mismatched products and images" });
+    }
+
+    const savedProducts = [];
+    for (let i = 0; i < parsedProducts.length; i++) {
+      const { name, description, price, color, badge } = parsedProducts[i];
+      const image = files[i].path;
+
+      const baseUrl = `${req.protocol}://${req.get("host")}`;
+      const imageUrl = `${baseUrl}/images/${path.basename(image)}`;
+
+      const newProduct = new Product({
+        productName: name,
+        des: description,
+        price: Number(price),
+        color,
+        badge: badge === "true", // Convert to boolean
+        image: imageUrl,
+      });
+
+      const savedProduct = await newProduct.save();
+      savedProducts.push(savedProduct);
+    }
+
+    res.status(201).json({
+      message: "Products created successfully",
+      products: savedProducts,
     });
-
-    const savedProduct = await newProduct.save();
-    res.send({ img: `/uploads/${req.file.filename}` });
-    res.json(savedProduct);
   } catch (error) {
     res
       .status(500)
-      .json({ message: `Error while creating transaction: ${error.message}` });
+      .json({ message: `Error while creating products: ${error.message}` });
   }
 };
 
@@ -121,9 +146,7 @@ export const create_SplOfferData = async (req, res) => {
   try {
     if (!req.body) return res.status(400).json("Product Data fail to Get");
     const { productName, price, color, badge, des, cat } = req.body;
-
     const img = req.file.path;
-
     const new_SplOfferData = new SplOfferData({
       img,
       productName,
@@ -133,7 +156,6 @@ export const create_SplOfferData = async (req, res) => {
       des,
       cat,
     });
-
     const saved_SplOfferData = await new_SplOfferData.save();
     res.send({ img: `/uploads/${req.file.filename}` });
     res.json(saved_SplOfferData);
@@ -156,21 +178,36 @@ export const get_SplOfferData = async (req, res) => {
   }
 };
 
-export const delete_Transaction = async (req, res) => {
+export const delete_Single_Product = async (req, res) => {
   try {
-    if (!req.body)
-      return res.status(400).json({ message: "Request body not found" });
+    console.log("Request body:", req.body);
 
-    const result = await Transaction.deleteOne(req.body).clone();
-    if (result.deletedCount === 0) {
-      return res
-        .status(404)
-        .json({ message: "No transaction found to delete" });
+    if (!req.body || Object.keys(req.body).length === 0) {
+      return res.status(400).json({ message: "Product details not provided" });
     }
-    res.json("Record Deleted!");
+
+    const result = await Product.deleteOne({ _id: req.body._id }).clone();
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "No product found to delete" });
+    }
+
+    return res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: `Error while deleting transaction: ${error.message}` });
+    return res.status(500).json({
+      message: `Error while deleting product: ${error.message}`,
+    });
+  }
+};
+
+export const get_all_users = async (req, res) => {
+  try {
+    const user = await User.find({});
+    res.json(user);
+    console.log(user);
+  } catch (error) {
+    res.status(500).json({
+      message: `Error while fetching Products: ${error.message}`,
+    });
   }
 };

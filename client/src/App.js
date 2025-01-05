@@ -27,6 +27,13 @@ import Profile from "./pages/Account/Profile";
 import { useState, useEffect } from "react";
 import LockedPage from "./pages/Lock_Page/Lock_Page";
 
+import Main from "./dashboard/Main";
+import Dashboard from "./dashboard/Pages/Dashbaord";
+import Inventory from "./dashboard/Pages/Inventory";
+import Orders from "./dashboard/Pages/Orders";
+import Customers from "./dashboard/Pages/Customers";
+import ProductUpload from "./dashboard/Pages/ProductUpload/ProductUpload";
+
 const Layout = () => {
   return (
     <div>
@@ -55,8 +62,8 @@ const Layout = () => {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/" element={<LockedPage />}>
-        {/* <Route path="/" element={<Layout />}> */}
+      {/* <Route path="/" element={<LockedPage />}> */}
+      <Route path="/" element={<Layout />}>
         <Route index element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/about" element={<About />}></Route>
@@ -69,6 +76,12 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
+      <Route path="/dashboard" element={<Main />}></Route>
+      <Route path="/inventory" element={<Inventory />}></Route>
+      <Route path="/upload_product" element={<ProductUpload />}></Route>
+
+      <Route path="/orders" element={<Orders />}></Route>
+      <Route path="/customers" element={<Customers />}></Route>
     </Route>
   )
 );

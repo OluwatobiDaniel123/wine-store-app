@@ -14,7 +14,7 @@ function Items({ currentItems }) {
         >
           <Product
             _id={item._id}
-            img={item.img}
+            img={item.image}
             productName={item.productName}
             price={item.price}
             color={item.color}
@@ -43,7 +43,8 @@ const Pagination = ({ itemsPerPage }) => {
   );
 
   useEffect(() => {
-    fetch("https://wine-store-app-backend.vercel.app/api/product", {
+    // fetch("https://wine-store-app-backend.vercel.app/api/product", {
+    fetch("http://localhost:5000/api/products", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

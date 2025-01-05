@@ -1,7 +1,6 @@
 import express from "express";
 import { login, register } from "../controller/userAuth.js";
 import {
-  delete_Transaction,
   create_NewArrivalProduct,
   get_NewArrivalProduct,
   get_BestSellers,
@@ -10,6 +9,8 @@ import {
   create_Product,
   create_SplOfferData,
   get_SplOfferData,
+  delete_Single_Product,
+  get_all_users,
 } from "../controller/controller.js";
 import upload from "../middleware/upload.js";
 
@@ -29,8 +30,8 @@ routes
   .get(get_BestSellers);
 
 routes
-  .route("/api/product")
-  .post(upload.single("img"), create_Product)
+  .route("/api/products")
+  .post(upload.array("images", 9999), create_Product)
   .get(get_Product);
 
 routes
@@ -38,6 +39,8 @@ routes
   .post(upload.single("img"), create_SplOfferData)
   .get(get_SplOfferData);
 
-routes.route("/api/transaction").delete(delete_Transaction);
+routes.route("/api/deleteProduct").delete(delete_Single_Product);
+
+routes.route("/api/users").get(get_all_users);
 
 export default routes;
