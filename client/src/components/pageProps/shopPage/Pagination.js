@@ -44,7 +44,7 @@ const Pagination = ({ itemsPerPage }) => {
 
   useEffect(() => {
     // fetch("https://wine-store-app-backend.vercel.app/api/product", {
-    fetch("http://localhost:5000/api/products", {
+    fetch("https://wine-store-app-backend.vercel.app/api/product", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
