@@ -50,12 +50,18 @@ const ProductUpload = () => {
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            // "Content-Type": "multipart/form-data",
           },
         }
       );
+      for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+      }
+
       console.log("Products uploaded:", response.data);
     } catch (error) {
+      console.error("Error response:", error.response?.data || error.message);
+
       console.error("Error uploading products:", error);
     }
   };

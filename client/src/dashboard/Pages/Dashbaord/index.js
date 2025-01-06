@@ -50,7 +50,7 @@ function Dashboard() {
 
   return (
     <Space size={20} className="flex flex-col">
-      <Space className="flex max-md:flex-col">
+      <Space className="flex sm:">
         <DashboardCard
           icon={
             <ShoppingCartOutlined

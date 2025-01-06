@@ -26,9 +26,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/Account/Profile";
 import { useState, useEffect } from "react";
 import LockedPage from "./pages/Lock_Page/Lock_Page";
-
 import Main from "./dashboard/Main";
-import Dashboard from "./dashboard/Pages/Dashbaord";
 import Inventory from "./dashboard/Pages/Inventory";
 import Orders from "./dashboard/Pages/Orders";
 import Customers from "./dashboard/Pages/Customers";
@@ -79,7 +77,6 @@ const router = createBrowserRouter(
       <Route path="/dashboard" element={<Main />}></Route>
       <Route path="/inventory" element={<Inventory />}></Route>
       <Route path="/upload_product" element={<ProductUpload />}></Route>
-
       <Route path="/orders" element={<Orders />}></Route>
       <Route path="/customers" element={<Customers />}></Route>
     </Route>

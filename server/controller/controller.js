@@ -87,6 +87,8 @@ export const create_Product = async (req, res) => {
       return res.status(400).json({ message: "Invalid request data" });
     }
 
+    console.log(req.body, req.files);
+
     const parsedProducts = req.body.products.map((product) =>
       JSON.parse(product)
     );
@@ -101,10 +103,12 @@ export const create_Product = async (req, res) => {
     const savedProducts = [];
     for (let i = 0; i < parsedProducts.length; i++) {
       const { name, description, price, color, badge } = parsedProducts[i];
-      const image = files[i].path;
+      const imageUrl = files[i].path;
 
-      const baseUrl = `${req.protocol}://${req.get("host")}`;
-      const imageUrl = `${baseUrl}/images/${path.basename(image)}`;
+      // const baseUrl = `${req.protocol}://${req.get("host")}`;
+      // const imageUrl = `${baseUrl}/images/${path.basename(image)}`;
+
+      // console.log(baseUrl);
 
       const newProduct = new Product({
         productName: name,
@@ -204,7 +208,6 @@ export const get_all_users = async (req, res) => {
   try {
     const user = await User.find({});
     res.json(user);
-    console.log(user);
   } catch (error) {
     res.status(500).json({
       message: `Error while fetching Products: ${error.message}`,

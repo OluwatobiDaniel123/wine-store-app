@@ -21,7 +21,7 @@ function SideMenu() {
   return (
     <div>
       <Menu
-        className="w-44 h-full"
+        className="w-44 h-full sm:hidden"
         onClick={(item) => {
           //item.key
           navigate(item.key);

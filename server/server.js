@@ -1,14 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
+
 import express from "express";
 import cors from "cors";
 import route from "./routes/route.js";
 import path from "path";
 import { fileURLToPath } from "url";
-import Product from "./model/Product.js";
-import BestSellers from "./model/BestSekllers.js";
-import NewArrivalProduct from "./model/NewArrivalProduct.js";
-import SplOfferData from "./model/SplOfferData.js";
 import { connectDB } from "./config/connection.js";
 
 connectDB();
@@ -37,21 +34,21 @@ app.get("/", (req, res) => {
   res.json({ greetings: "Hello from wine store" });
 });
 
-app.use(route);
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
-app.use(
-  "/images",
-  express.static(path.join(__dirname, "images"), {
-    setHeaders: (res) => {
-      res.contentType("image/jpeg"); // Ensure proper content type
-    },
-  })
-);
+app.use(route);
+
+// app.use(
+//   "/images",
+//   express.static(path.join(__dirname, "images"), {
+//     setHeaders: (res) => {
+//       res.contentType("image/jpeg"); // Ensure proper content type
+//     },
+//   })
+// );
 
 const PORT = process.env.PORT || 5000;
 
