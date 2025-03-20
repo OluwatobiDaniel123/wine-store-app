@@ -49,7 +49,7 @@ const ProductUpload = () => {
       // https://wine-store-app-backend.vercel.app/api/products
       const response = await axios.post(
         // "https://wine-store-app-backend.vercel.app/api/specialofferdata",
-        "https://wine-store-app-backend.vercel.app/api/newarrivalproduct",
+        "https://wine-store-app-backend.vercel.app/api/bestsellers",
         formData,
         {
           headers: {
