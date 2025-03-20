@@ -1,10 +1,6 @@
 import Dashboard from "../../Pages/Dashbaord";
 
 function PageContent() {
-  return (
-    <div className="p-2 mr-16">
-      <Dashboard />
-    </div>
-  );
+  return <Dashboard />;
 }
 export default PageContent;

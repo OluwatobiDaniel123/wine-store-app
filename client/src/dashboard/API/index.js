@@ -1,5 +1,14 @@
-export const getOrders = () => {
-  return fetch("https://dummyjson.com/carts/1").then((res) => res.json());
+const API_URL = "http://localhost:5000/api/orders";
+
+export const getOrders = async (userId) => {
+  try {
+    const response = await fetch(`${API_URL}?userId=${userId}`);
+    if (!response.ok) throw new Error("Failed to fetch orders");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    return [];
+  }
 };
 
 export const getRevenue = () => {

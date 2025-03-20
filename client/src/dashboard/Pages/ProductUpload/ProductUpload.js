@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ProductUpload = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([
     { name: "", description: "", price: "", color: "", badge: "", image: null },
   ]);
@@ -46,6 +48,7 @@ const ProductUpload = () => {
     try {
       // https://wine-store-app-backend.vercel.app/api/products
       const response = await axios.post(
+        // "https://wine-store-app-backend.vercel.app/api/specialofferdata",
         "https://wine-store-app-backend.vercel.app/api/products",
         formData,
         {
@@ -57,6 +60,8 @@ const ProductUpload = () => {
       for (let pair of formData.entries()) {
         console.log(pair[0], pair[1]);
       }
+
+      // navigate("/dashboard");
 
       console.log("Products uploaded:", response.data);
     } catch (error) {
@@ -106,7 +111,7 @@ const ProductUpload = () => {
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring focus:ring-blue-500"
             />
             <label className="block text-sm font-medium text-gray-700">
-              Color:
+              Categories:
             </label>
             <input
               type="text"

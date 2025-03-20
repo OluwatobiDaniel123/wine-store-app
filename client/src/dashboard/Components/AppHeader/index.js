@@ -27,7 +27,10 @@ function AppHeader() {
         <h5 className="font-mono font-bold">Chrisalphawine</h5>
       </div>
 
-      <Typography.Title className="sm:hidden"> Dashboard</Typography.Title>
+      <Typography.Title className=" max-sml:hidden">
+        {" "}
+        Dashboard
+      </Typography.Title>
 
       <Space>
         <Badge count={comments.length} dot>

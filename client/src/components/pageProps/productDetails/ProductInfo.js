@@ -28,7 +28,7 @@ const ProductInfo = ({ productInfo }) => {
     <div className="flex flex-col gap-5">
       <h2 className="text-4xl font-semibold">{productInfo.productName}</h2>
       <p className="text-2xl font-semibold">
-        {productInfo.price} Dt
+        ₦ {productInfo.price}
         <span className="text-xl font-semibold line-through ml-2">540</span>
         <span className="text-xs ml-2 inline-flex items-center px-3 py-1 rounded-full bg-green-600 text-white">
           Save 100
@@ -88,9 +88,9 @@ const ProductInfo = ({ productInfo }) => {
       </div>
 
       <p className="text-base text-green-600 font-medium">En Stock</p>
-      <p className="font-medium text-lg">
+      {/* <p className="font-medium text-lg">
         <span className="font-normal">Colors:</span> {productInfo.color}
-      </p>
+      </p> */}
       <button
         onClick={() =>
           dispatch(
@@ -110,7 +110,8 @@ const ProductInfo = ({ productInfo }) => {
         Add to Cart
       </button>
       <p className="font-normal text-sm">
-        <span className="text-base font-medium"> Categories:</span> Drinks
+        <span className="text-base font-medium"> Categories:</span>{" "}
+        {productInfo.color}
       </p>
     </div>
   );

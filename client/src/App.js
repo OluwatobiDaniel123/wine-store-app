@@ -76,7 +76,7 @@ const router = createBrowserRouter(
       <Route path="/signin" element={<SignIn />}></Route>
       <Route path="/dashboard" element={<Main />}></Route>
       <Route path="/inventory" element={<Inventory />}></Route>
-      <Route path="/upload_product" element={<ProductUpload />}></Route>
+      <Route path="/upload_products" element={<ProductUpload />}></Route>
       <Route path="/orders" element={<Orders />}></Route>
       <Route path="/customers" element={<Customers />}></Route>
     </Route>

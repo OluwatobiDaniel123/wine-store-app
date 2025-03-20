@@ -18,17 +18,8 @@ app.use(
   })
 );
 
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*"); // Allow requests from all origins
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
-
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // Parses URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.json({ greetings: "Hello from wine store" });
@@ -40,15 +31,6 @@ const __dirname = path.dirname(__filename);
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use(route);
-
-// app.use(
-//   "/images",
-//   express.static(path.join(__dirname, "images"), {
-//     setHeaders: (res) => {
-//       res.contentType("image/jpeg"); // Ensure proper content type
-//     },
-//   })
-// );
 
 const PORT = process.env.PORT || 5000;
 

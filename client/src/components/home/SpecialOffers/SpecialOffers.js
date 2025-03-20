@@ -29,7 +29,7 @@ const SpecialOffers = () => {
     <div className="w-full pb-20">
       <Heading heading="Special Offers" />
 
-      <div className="w-full  grid grid-cols-1 md:grid-cols-2 lgl:grid-cols-3 xl:grid-cols-3 gap-10">
+      <div className="w-full  grid grid-cols-2 md:grid-cols-4 lgl:grid-cols-4 xl:grid-cols-4 gap-4">
         {[...(data || []), ...(catData || [])]
           .filter(
             (value, index, self) =>
@@ -40,10 +40,9 @@ const SpecialOffers = () => {
               key={i}
               className="transform scale-100 hover:scale-105 transition duration-300"
             >
-              {" "}
               <Product
                 _id={data._id}
-                img={data.img}
+                img={data.image}
                 productName={data.productName}
                 price={data.price}
                 color={data.color}

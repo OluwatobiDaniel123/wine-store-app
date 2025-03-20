@@ -1,23 +1,35 @@
-import { Avatar, Rate, Space, Table, Typography } from "antd";
+import { Space, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
-import { getInventory, getOrders } from "../../API";
 
 function Orders() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      console.error("User ID not found. Please log in.");
+      return;
+    }
+
     setLoading(true);
-    getOrders().then((res) => {
-      setDataSource(res.products);
-      setLoading(false);
-    });
+
+    fetch(`https://wine-store-app-backend.vercel.app/api/orders/${userId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setDataSource(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching orders:", error);
+        setLoading(false);
+      });
   }, []);
-  console.log(dataSource);
 
   return (
-    <Space size={20} direction="vertical">
-      <Typography.Title level={4}>Orders</Typography.Title>
+    <Space size={20} direction="vertical" className="p-4">
+      <Typography.Title level={4}>My Orders</Typography.Title>
       <Table
         loading={loading}
         columns={[
@@ -28,11 +40,6 @@ function Orders() {
           {
             title: "Price",
             dataIndex: "price",
-            render: (value) => <span>${value}</span>,
-          },
-          {
-            title: "DiscountedPrice",
-            dataIndex: "discountedPrice",
             render: (value) => <span>${value}</span>,
           },
           {
@@ -52,4 +59,5 @@ function Orders() {
     </Space>
   );
 }
+
 export default Orders;

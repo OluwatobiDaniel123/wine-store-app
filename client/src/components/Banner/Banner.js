@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import { drink3 } from "../../assets/images";
 
 import CustomSlide from "./CustomSlide";
 
@@ -101,33 +100,36 @@ const Banner = () => {
 
   const slides = [
     {
-      imgSrc: drink3,
-      text: "Whisky",
+      imgSrc:
+        "https://res.cloudinary.com/dbcygr0pi/image/upload/v1742409699/Vodka_and_Gin_Cocktail_bar_advertisement_Instagram_post_flyer_template_-_Made_with_PosterMyWall_jwkoel.jpg",
+      text: "Whisky & Brandy",
       Subtext:
-        " We are a Packing and Moving company that offer varied moving services such as home and office,and delivery services.  ",
+        "A premium whisky known for its smooth texture and rich, smoky undertones, ideal for those who enjoy a bold yet balanced taste.",
       buttonLink: "/shop",
       buttonText: "Shop Now",
     },
     {
-      imgSrc: drink3,
-      text: "Red-Wine",
+      imgSrc:
+        "https://res.cloudinary.com/dbcygr0pi/image/upload/v1742437010/Whiskey_and_cigar_night_flyer_template_-_Made_with_PosterMyWall_rsxxfu.jpg",
+      text: "Know More",
       Subtext:
-        "Wine That Epitomizes Professional Excellence Sidekick to Your Adventures .",
+        "ChrisAlpha wine & liquor store is the ultimate destination for all your shopping needs. With a wide range of high-quality products, easy-to-use navigation, and secure payment options, we make online shopping simple and enjoyable. ",
       buttonLink: "/about",
       buttonText: "About-us",
     },
     {
-      imgSrc: drink3,
-      text: "Non-Alcholic",
+      imgSrc:
+        "https://res.cloudinary.com/dbcygr0pi/image/upload/v1742409699/Whisky_and_wine_cup_Template_-_Made_with_PosterMyWall_m4w3lg.jpg",
+      text: " Reach Out To Us",
       Subtext:
-        "Wine: The Coolest Sidekick to Your Adventures Sidekick to Your Adventures ",
+        "We caters to wine and liquor enthusiasts, event planners, and everyday shoppers looking for premium beverages with the convenience of online shopping. Shop with confidence and discover the best at ChrisAlpha wine & liquor store today!",
       buttonLink: "/contact",
       buttonText: "Contact-us",
     },
   ];
 
   return (
-    <div className="w-full  bg-white">
+    <div className="w-full bg-white">
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <CustomSlide key={index} {...slide} />

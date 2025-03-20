@@ -11,6 +11,8 @@ import {
   get_SplOfferData,
   delete_Single_Product,
   get_all_users,
+  getOrders,
+  CreateOrders,
 } from "../controller/controller.js";
 import upload from "../middleware/upload.js";
 
@@ -20,13 +22,13 @@ routes.route("/auth/register").post(register);
 routes.route("/auth/login").post(login);
 
 routes
-  .route("/api/NewArrivalProduct")
-  .post(upload.single("img"), create_NewArrivalProduct)
+  .route("/api/newarrivalproduct")
+  .post(upload.array("images", 9999), create_NewArrivalProduct)
   .get(get_NewArrivalProduct);
 
 routes
   .route("/api/bestsellers")
-  .post(upload.single("img"), create_BestSellers)
+  .post(upload.array("images", 9999), create_BestSellers)
   .get(get_BestSellers);
 
 routes
@@ -36,11 +38,15 @@ routes
 
 routes
   .route("/api/specialofferdata")
-  .post(upload.single("img"), create_SplOfferData)
+  .post(upload.array("images", 9999), create_SplOfferData)
   .get(get_SplOfferData);
 
 routes.route("/api/deleteProduct").delete(delete_Single_Product);
 
 routes.route("/api/users").get(get_all_users);
+
+routes.route("/api/orders/create").get(CreateOrders);
+
+routes.route("/api/orders/:userId").get(getOrders);
 
 export default routes;

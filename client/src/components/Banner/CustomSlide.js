@@ -3,7 +3,16 @@ import { useState, useEffect } from "react";
 import { drinks, drink_1, drink_4, drink3 } from "../../assets/images";
 import { Link } from "react-router-dom";
 
-const ImgBox = [{ img_1: drink_1, img_2: drinks, img_3: drink_4 }];
+const ImgBox = [
+  {
+    img_1:
+      "https://res.cloudinary.com/dbcygr0pi/image/upload/v1742409699/Vodka_and_Gin_Cocktail_bar_advertisement_Instagram_post_flyer_template_-_Made_with_PosterMyWall_jwkoel.jpg",
+    img_2:
+      "https://res.cloudinary.com/dbcygr0pi/image/upload/v1742437271/Whiskey_and_cigar_night_flyer_template_-_Made_with_PosterMyWall_1_rvedg5.jpg",
+    img_3:
+      "https://res.cloudinary.com/dbcygr0pi/image/upload/v1742409699/Whisky_and_wine_cup_Template_-_Made_with_PosterMyWall_m4w3lg.jpg",
+  },
+];
 
 const CustomSlide = ({ text, Subtext, buttonText, buttonLink }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -30,7 +39,7 @@ const CustomSlide = ({ text, Subtext, buttonText, buttonLink }) => {
           height: "100vh",
         }}
       >
-        <div style={{ padding: "15px" }}>
+        <div style={{ padding: "15px", width: "900px" }}>
           <h1
             style={{
               marginBottom: "15px",
@@ -44,7 +53,7 @@ const CustomSlide = ({ text, Subtext, buttonText, buttonLink }) => {
           <p
             style={{
               marginBottom: "25px",
-              fontSize: "1.5rem",
+              fontSize: "1rem",
               color: "white",
             }}
           >

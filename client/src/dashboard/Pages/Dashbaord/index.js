@@ -49,8 +49,8 @@ function Dashboard() {
   }, []);
 
   return (
-    <Space size={20} className="flex flex-col">
-      <Space className="flex sm:">
+    <Space size={20}>
+      <Space>
         <DashboardCard
           icon={
             <ShoppingCartOutlined
@@ -112,7 +112,7 @@ function Dashboard() {
           value={revenue}
         />
       </Space>
-      <Space className="flex max-md:flex-col">
+      <Space>
         <RecentOrders />
         <DashboardChart />
       </Space>
@@ -217,4 +217,5 @@ function DashboardChart() {
     </Card>
   );
 }
+
 export default Dashboard;

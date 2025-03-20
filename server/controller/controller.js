@@ -1,30 +1,47 @@
-import Transaction from "../model/Product.js";
 import NewArrivalProduct from "../model/NewArrivalProduct.js";
 import BestSellers from "../model/BestSekllers.js";
 import Product from "../model/Product.js";
 import SplOfferData from "../model/SplOfferData.js";
-import path from "path";
 import User from "../model/User.js";
+import Order from "../model/Order.js";
 
 export const create_NewArrivalProduct = async (req, res) => {
   try {
-    if (!req.body)
-      return res.status(400).json("NewArrivalProduct Data fail to Get");
-    const { productName, price, color, badge, des } = req.body;
+    if (!req.body.products || !req.files) {
+      return res.status(400).json({ message: "Invalid request data" });
+    }
 
-    const img = req.file ? `/uploads/${req.file.filename}` : null;
+    console.log(req.body, req.files);
 
-    const newNewArrivalProduct = new NewArrivalProduct({
-      img,
-      productName,
-      price,
-      color,
-      badge,
-      des,
-    });
+    const parsedProducts = req.body.products.map((product) =>
+      JSON.parse(product)
+    );
+    const files = req.files;
 
-    const savedNewArrivalProduct = await newNewArrivalProduct.save();
-    res.json(savedNewArrivalProduct);
+    if (parsedProducts.length !== files.length) {
+      return res
+        .status(400)
+        .json({ message: "Mismatched products and images" });
+    }
+
+    const savedProducts = [];
+    for (let i = 0; i < parsedProducts.length; i++) {
+      const { name, description, price, color, badge } = parsedProducts[i];
+      const imageUrl = files[i].path;
+
+      const newProduct = new NewArrivalProduct({
+        productName: name,
+        des: description,
+        price: Number(price),
+        color,
+        badge: badge === "true",
+        image: imageUrl,
+      });
+
+      const savedProduct = await newProduct.save();
+      savedProducts.push(savedProduct);
+    }
+    res.json(savedProducts);
   } catch (error) {
     res
       .status(500)
@@ -46,22 +63,41 @@ export const get_NewArrivalProduct = async (req, res) => {
 
 export const create_BestSellers = async (req, res) => {
   try {
-    if (!req.body) return res.status(400).json("BestSellers Data fail to Get");
-    const { productName, price, color, badge, des } = req.body;
+    if (!req.body.products || !req.files) {
+      return res.status(400).json({ message: "Invalid request data" });
+    }
 
-    const img = req.file ? `/uploads/${req.file.filename}` : null;
+    console.log(req.body, req.files);
 
-    const newBestSellers = new BestSellers({
-      img,
-      productName,
-      price,
-      color,
-      badge,
-      des,
-    });
+    const parsedProducts = req.body.products.map((product) =>
+      JSON.parse(product)
+    );
+    const files = req.files;
 
-    const savedBestSellers = await newBestSellers.save();
-    res.json(savedBestSellers);
+    if (parsedProducts.length !== files.length) {
+      return res
+        .status(400)
+        .json({ message: "Mismatched products and images" });
+    }
+
+    const savedProducts = [];
+    for (let i = 0; i < parsedProducts.length; i++) {
+      const { name, description, price, color, badge } = parsedProducts[i];
+      const imageUrl = files[i].path;
+
+      const newProduct = new BestSellers({
+        productName: name,
+        des: description,
+        price: Number(price),
+        color,
+        badge: badge === "true",
+        image: imageUrl,
+      });
+
+      const savedProduct = await newProduct.save();
+      savedProducts.push(savedProduct);
+    }
+    res.json(savedProducts);
   } catch (error) {
     res
       .status(500)
@@ -105,11 +141,6 @@ export const create_Product = async (req, res) => {
       const { name, description, price, color, badge } = parsedProducts[i];
       const imageUrl = files[i].path;
 
-      // const baseUrl = `${req.protocol}://${req.get("host")}`;
-      // const imageUrl = `${baseUrl}/images/${path.basename(image)}`;
-
-      // console.log(baseUrl);
-
       const newProduct = new Product({
         productName: name,
         des: description,
@@ -148,21 +179,41 @@ export const get_Product = async (req, res) => {
 
 export const create_SplOfferData = async (req, res) => {
   try {
-    if (!req.body) return res.status(400).json("Product Data fail to Get");
-    const { productName, price, color, badge, des, cat } = req.body;
-    const img = req.file.path;
-    const new_SplOfferData = new SplOfferData({
-      img,
-      productName,
-      price,
-      color,
-      badge,
-      des,
-      cat,
-    });
-    const saved_SplOfferData = await new_SplOfferData.save();
-    res.send({ img: `/uploads/${req.file.filename}` });
-    res.json(saved_SplOfferData);
+    if (!req.body.products || !req.files) {
+      return res.status(400).json({ message: "Invalid request data" });
+    }
+
+    console.log(req.body, req.files);
+
+    const parsedProducts = req.body.products.map((product) =>
+      JSON.parse(product)
+    );
+    const files = req.files;
+
+    if (parsedProducts.length !== files.length) {
+      return res
+        .status(400)
+        .json({ message: "Mismatched products and images" });
+    }
+
+    const savedProducts = [];
+    for (let i = 0; i < parsedProducts.length; i++) {
+      const { name, description, price, color, badge } = parsedProducts[i];
+      const imageUrl = files[i].path;
+
+      const newProduct = new SplOfferData({
+        productName: name,
+        des: description,
+        price: Number(price),
+        color,
+        badge: badge === "true",
+        image: imageUrl,
+      });
+
+      const savedProduct = await newProduct.save();
+      savedProducts.push(savedProduct);
+    }
+    res.json(savedProducts);
   } catch (error) {
     res
       .status(500)
@@ -212,5 +263,35 @@ export const get_all_users = async (req, res) => {
     res.status(500).json({
       message: `Error while fetching Products: ${error.message}`,
     });
+  }
+};
+
+export const getOrders = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const orders = await Order.find({ userId }).sort({ createdAt: -1 });
+
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const CreateOrders = async (req, res) => {
+  try {
+    const { userId, items, totalAmount } = req.body;
+
+    if (!userId || !items || !items.length) {
+      return res.status(400).json({ message: "Invalid order data" });
+    }
+
+    const order = new Order({ userId, items, totalAmount, status: "Pending" });
+    await order.save();
+
+    res.status(201).json({ message: "Order placed successfully", order });
+  } catch (error) {
+    console.error("Error placing order:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };

@@ -1,4 +1,4 @@
-import { Avatar, Rate, Space, Table, Typography } from "antd";
+import { Avatar, Space, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { getInventory } from "../../API";
 
@@ -14,17 +14,18 @@ function Inventory() {
     });
   }, []);
 
-  console.log(dataSources);
-
   const handleDelete = async (id) => {
     try {
-      const response = await fetch("http://localhost:5000/api/deleteProduct", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ _id: id }),
-      });
+      const response = await fetch(
+        "https://wine-store-app-backend.vercel.app/api/deleteProduct",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ _id: id }),
+        }
+      );
 
       if (!response.ok) {
         const error = await response.json();
@@ -32,28 +33,27 @@ function Inventory() {
         return;
       }
 
-      const result = await response.json();
-      console.log(result);
-
-      // Remove the deleted product from the UI
-      setDataSources(dataSources.filter((dataSource) => dataSource._id !== id));
+      setDataSources((prev) => prev.filter((item) => item._id !== id));
     } catch (error) {
       console.error("Error deleting product:", error);
     }
   };
 
   return (
-    <Space size={20} direction="vertical">
+    <Space
+      size={10}
+      direction="vertical"
+      className="p-4 w-full overflow-x-auto"
+    >
       <Typography.Title level={4}>Inventory</Typography.Title>
       <Table
         loading={loading}
         columns={[
           {
-            title: "Product Image",
+            title: "Image",
             dataIndex: "image",
-            render: (link) => {
-              return <Avatar src={link} />;
-            },
+            render: (link) => <Avatar src={link} />,
+            fixed: "left",
           },
           {
             title: "Title",
@@ -68,35 +68,30 @@ function Inventory() {
             title: "Stock",
             dataIndex: "_id",
           },
-
-          // {
-          //   title: "Available",
-          //   dataIndex: "badge",
-          // },
           {
             title: "Category",
             dataIndex: "color",
           },
           {
+            title: "Actions",
             dataIndex: "delete",
-            render: (_, record) => {
-              return (
-                <button
-                  className="py-2 px-6 bg-red-500 text-white font-semibold uppercase hover:bg-red-700 duration-300"
-                  onClick={() => handleDelete(record._id)}
-                >
-                  Delete
-                </button>
-              );
-            },
+            render: (_, record) => (
+              <button
+                className="py-1 px-1 text-xs bg-red-500 text-white font-semibold uppercase hover:bg-red-700 duration-300"
+                onClick={() => handleDelete(record._id)}
+              >
+                Delete
+              </button>
+            ),
+            fixed: "right",
           },
         ]}
         dataSource={dataSources}
-        pagination={{
-          pageSize: 5,
-        }}
-      ></Table>
+        pagination={{ pageSize: 5 }}
+        scroll={{ x: "max-content" }}
+      />
     </Space>
   );
 }
+
 export default Inventory;

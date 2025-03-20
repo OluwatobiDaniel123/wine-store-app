@@ -1,6 +1,7 @@
-import { Avatar, Rate, Space, Table, Typography } from "antd";
+import { Avatar, Space, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
-import { getCustomers, getInventory } from "../../API";
+import { getCustomers } from "../../API";
+import { Link } from "react-router-dom";
 
 function Customers() {
   const [loading, setLoading] = useState(false);
@@ -10,29 +11,36 @@ function Customers() {
     setLoading(true);
     getCustomers().then((users) => {
       setDataSource(users);
-      console.log(users);
       setLoading(false);
     });
   }, []);
 
   return (
-    <Space size={20} direction="vertical">
-      <Typography.Title level={4}>Customers</Typography.Title>
+    <Space
+      size={20}
+      direction="vertical"
+      className="p-4 w-full overflow-x-auto"
+    >
+      <div className="flex justify-between items-center">
+        <Typography.Title level={4}>Customers</Typography.Title>
+        <Link to="/dashboard" className="text-blue-500">
+          Back
+        </Link>
+      </div>
+
       <Table
         loading={loading}
         columns={[
           {
             title: "Photo",
             dataIndex: "image",
-            render: (link) => {
-              return <Avatar src={link} />;
-            },
+            render: (link) => <Avatar src={link} />,
+            fixed: "left",
           },
           {
             title: "Name",
             dataIndex: "clientName",
           },
-
           {
             title: "Email",
             dataIndex: "email",
@@ -41,7 +49,6 @@ function Customers() {
             title: "Phone",
             dataIndex: "phone",
           },
-
           {
             title: "Address",
             dataIndex: "address",
@@ -56,11 +63,11 @@ function Customers() {
           },
         ]}
         dataSource={dataSource}
-        pagination={{
-          pageSize: 5,
-        }}
-      ></Table>
+        pagination={{ pageSize: 5 }}
+        scroll={{ x: "max-content" }}
+      />
     </Space>
   );
 }
+
 export default Customers;

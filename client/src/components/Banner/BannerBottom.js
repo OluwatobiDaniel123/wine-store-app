@@ -53,9 +53,9 @@ const BannerBottom = () => {
             </svg>
           </span>
           <p className="text-xl text-lightText text-base">
-            Free shipping <br />{" "}
+            Free Worldwide Delivery <br />{" "}
             <span className="text-xs text-lightText text-base">
-              Free Shipping World Wide
+              Grab it, keep it – No take-backs!
             </span>
           </p>
         </div>
@@ -91,7 +91,9 @@ const BannerBottom = () => {
               ></path>
             </svg>
           </span>
-          <p className="text-lightText text-base">Return policy in 7 days</p>
+          <p className="text-lightText text-base">
+            No returns, but we know you’ll love it!
+          </p>
         </div>
       </div>
     </div>

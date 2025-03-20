@@ -19,44 +19,42 @@ function SideMenu() {
 
   const navigate = useNavigate();
   return (
-    <div>
-      <Menu
-        className="w-44 h-full "
-        onClick={(item) => {
-          //item.key
-          navigate(item.key);
-        }}
-        selectedKeys={[selectedKeys]}
-        items={[
-          {
-            label: "Dashboard",
-            icon: <AppstoreOutlined />,
-            key: "/dashboard",
-          },
-          {
-            label: "Inventory",
-            key: "/inventory",
-            icon: <ShopOutlined />,
-          },
+    <Menu
+      style={{ width: "30%", height: "100vh" }}
+      onClick={(item) => {
+        //item.key
+        navigate(item.key);
+      }}
+      selectedKeys={[selectedKeys]}
+      items={[
+        {
+          label: "Dashboard",
+          icon: <AppstoreOutlined />,
+          key: "/dashboard",
+        },
+        {
+          label: "Inventory",
+          key: "/inventory",
+          icon: <ShopOutlined />,
+        },
 
-          {
-            label: "Upload",
-            key: "/upload_product",
-            icon: <ShopOutlined />,
-          },
-          {
-            label: "Orders",
-            key: "/orders",
-            icon: <ShoppingCartOutlined />,
-          },
-          {
-            label: "Customers",
-            key: "/customers",
-            icon: <UserOutlined />,
-          },
-        ]}
-      ></Menu>
-    </div>
+        {
+          label: "Upload",
+          key: "/upload_product",
+          icon: <ShopOutlined />,
+        },
+        {
+          label: "Orders",
+          key: "/orders",
+          icon: <ShoppingCartOutlined />,
+        },
+        {
+          label: "Customers",
+          key: "/customers",
+          icon: <UserOutlined />,
+        },
+      ]}
+    ></Menu>
   );
 }
 export default SideMenu;

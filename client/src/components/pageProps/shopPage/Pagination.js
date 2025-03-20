@@ -89,7 +89,7 @@ const Pagination = ({ itemsPerPage }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-10 mdl:gap-4 lg:gap-10 ">
+      <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-2 mdl:gap-4 lg:gap-4 ">
         {fetchError && <p className="text-red-500">{fetchError}</p>}
         {loading ? (
           <div>

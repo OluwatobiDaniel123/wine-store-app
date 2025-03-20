@@ -71,7 +71,7 @@ const NewArrivals = () => {
           >
             <Product
               _id={product._id}
-              img={product.img}
+              img={product.image}
               productName={product.productName}
               price={product.price}
               color={product.color}
