@@ -66,7 +66,7 @@ const NewArrivals = () => {
       <Slider {...settings}>
         {newArrival?.map((product, i) => (
           <div
-            className="px-2 h-96 shadow-lg transform scale-100 hover:scale-105 transition duration-300"
+            className="px-6 h-96 shadow-lg transform scale-100 hover:scale-105 transition duration-300"
             key={i}
           >
             <Product

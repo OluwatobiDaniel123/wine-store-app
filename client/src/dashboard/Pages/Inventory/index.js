@@ -65,7 +65,7 @@ function Inventory() {
             render: (value) => <span>N{value}</span>,
           },
           {
-            title: "Stock",
+            title: "Stock Id",
             dataIndex: "_id",
           },
           {

@@ -29,7 +29,7 @@ const SpecialOffers = () => {
     <div className="w-full pb-20">
       <Heading heading="Special Offers" />
 
-      <div className="w-full  grid grid-cols-2 md:grid-cols-4 lgl:grid-cols-4 xl:grid-cols-4 gap-4">
+      <div className="w-full grid grid-cols-2 md:grid-cols-4 lgl:grid-cols-4 xl:grid-cols-4 gap-4">
         {[...(data || []), ...(catData || [])]
           .filter(
             (value, index, self) =>

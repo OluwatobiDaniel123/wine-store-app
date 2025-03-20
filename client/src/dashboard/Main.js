@@ -308,25 +308,25 @@ const RecentDonations = () => (
         {[
           {
             name: "Anonymous",
-            amount: "$500",
+            amount: " ₦500",
             date: "2 hours ago",
             cause: "Hennessy",
           },
           {
             name: "Sarah Wilson",
-            amount: "$1,200",
+            amount: " ₦1,200",
             date: "5 hours ago",
             cause: "Don simon",
           },
           {
             name: "James Brown",
-            amount: "$750",
+            amount: " ₦750",
             date: "1 day ago",
             cause: "Captain Jack",
           },
           {
             name: "Emily Chen",
-            amount: "$2,000",
+            amount: " ₦2,000",
             date: "2 days ago",
             cause: "Whisky",
           },
@@ -353,25 +353,25 @@ const RecentDonations = () => (
 const UpcomingEvents = () => (
   <CustomCard className="h-full">
     <CustomCardHeader>
-      <CustomCardTitle>Upcoming Events</CustomCardTitle>
+      <CustomCardTitle>Upcoming Supply Sales</CustomCardTitle>
     </CustomCardHeader>
     <div className="p-4">
       <div className="space-y-4">
         {[
           {
-            name: "Annual Fundraising Gala",
+            name: "Annual End Of The Year Event",
             date: "March 15, 2025",
             location: "Grand Hotel",
           },
           {
-            name: "Community Outreach Day",
+            name: "Needed Beer In Stocks",
             date: "March 20, 2025",
             location: "City Park",
           },
           {
-            name: "Volunteer Training",
+            name: "Supplying Of Drinks",
             date: "March 25, 2025",
-            location: "Main Office",
+            location: "Garden Hotel",
           },
         ].map((event, index) => (
           <div
