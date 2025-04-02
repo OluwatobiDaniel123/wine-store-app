@@ -1,9 +1,53 @@
 import NewArrivalProduct from "../model/NewArrivalProduct.js";
-import BestSellers from "../model/BestSekllers.js";
+import BestSellers from "../model/BestSellers.js";
 import Product from "../model/Product.js";
 import SplOfferData from "../model/SplOfferData.js";
 import User from "../model/User.js";
 import Order from "../model/Order.js";
+
+// export const create_NewArrivalProduct = async (req, res) => {
+//   try {
+//     if (!req.body.products || !req.files) {
+//       return res.status(400).json({ message: "Invalid request data" });
+//     }
+
+//     console.log(req.body, req.files);
+
+//     const parsedProducts = req.body.products.map((product) =>
+//       JSON.parse(product)
+//     );
+//     const files = req.files;
+
+//     if (parsedProducts.length !== files.length) {
+//       return res
+//         .status(400)
+//         .json({ message: "Mismatched products and images" });
+//     }
+
+//     const savedProducts = [];
+//     for (let i = 0; i < parsedProducts.length; i++) {
+//       const { name, description, price, color, badge } = parsedProducts[i];
+//       const imageUrl = files[i].path;
+
+//       const newProduct = new NewArrivalProduct({
+//         productName: name,
+//         des: description,
+//         price: Number(price),
+//         color,
+//         badge: badge === "true",
+//         image: imageUrl,
+//       });
+
+//       const savedProduct = await newProduct.save();
+//       savedProducts.push(savedProduct);
+//     }
+//     res.json(savedProducts);
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ message: `Error while creating transaction: ${error.message}` });
+//   }
+// };
 
 export const create_NewArrivalProduct = async (req, res) => {
   try {
@@ -11,41 +55,39 @@ export const create_NewArrivalProduct = async (req, res) => {
       return res.status(400).json({ message: "Invalid request data" });
     }
 
-    console.log(req.body, req.files);
+    let parsedProducts;
+    try {
+      parsedProducts = req.body.products.map((product) => JSON.parse(product));
+    } catch (error) {
+      return res.status(400).json({ message: "Invalid product data format" });
+    }
 
-    const parsedProducts = req.body.products.map((product) =>
-      JSON.parse(product)
-    );
     const files = req.files;
-
     if (parsedProducts.length !== files.length) {
       return res
         .status(400)
         .json({ message: "Mismatched products and images" });
     }
 
-    const savedProducts = [];
-    for (let i = 0; i < parsedProducts.length; i++) {
-      const { name, description, price, color, badge } = parsedProducts[i];
-      const imageUrl = files[i].path;
+    const savedProducts = await Promise.all(
+      parsedProducts.map(async (product, i) => {
+        const { name, description, price, color, badge } = product;
+        return new NewArrivalProduct({
+          productName: name,
+          des: description,
+          price: Number(price),
+          color,
+          badge: badge === "true",
+          image: files[i].path,
+        }).save();
+      })
+    );
 
-      const newProduct = new NewArrivalProduct({
-        productName: name,
-        des: description,
-        price: Number(price),
-        color,
-        badge: badge === "true",
-        image: imageUrl,
-      });
-
-      const savedProduct = await newProduct.save();
-      savedProducts.push(savedProduct);
-    }
     res.json(savedProducts);
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: `Error while creating transaction: ${error.message}` });
+    res.status(500).json({
+      message: `Error creating new arrival product: ${error.message}`,
+    });
   }
 };
 
@@ -117,54 +159,90 @@ export const get_BestSellers = async (req, res) => {
   }
 };
 
+// export const create_Product = async (req, res) => {
+//   try {
+//     if (!req.body.products || !req.files) {
+//       return res.status(400).json({ message: "Invalid request data" });
+//     }
+
+//     console.log(req.body, req.files);
+
+//     const parsedProducts = req.body.products.map((product) =>
+//       JSON.parse(product)
+//     );
+//     const files = req.files;
+
+//     if (parsedProducts.length !== files.length) {
+//       return res
+//         .status(400)
+//         .json({ message: "Mismatched products and images" });
+//     }
+
+//     const savedProducts = [];
+//     for (let i = 0; i < parsedProducts.length; i++) {
+//       const { name, description, price, categories, badge } = parsedProducts[i];
+//       const imageUrl = files[i].path;
+
+//       const newProduct = new Product({
+//         productName: name,
+//         des: description,
+//         price: Number(price),
+//         categories,
+//         badge: badge === "true", // Convert to boolean
+//         image: imageUrl,
+//       });
+
+//       const savedProduct = await newProduct.save();
+//       savedProducts.push(savedProduct);
+//     }
+
+//     res.status(201).json({
+//       message: "Products created successfully",
+//       products: savedProducts,
+//     });
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ message: `Error while creating products: ${error.message}` });
+//   }
+// };
+
 export const create_Product = async (req, res) => {
   try {
-    if (!req.body.products || !req.files) {
-      return res.status(400).json({ message: "Invalid request data" });
-    }
+    const bestSellers = await BestSellers.find({});
+    const newArrivals = await NewArrivalProduct.find({});
+    const specialOffers = await SplOfferData.find({});
 
-    console.log(req.body, req.files);
-
-    const parsedProducts = req.body.products.map((product) =>
-      JSON.parse(product)
-    );
-    const files = req.files;
-
-    if (parsedProducts.length !== files.length) {
+    const combinedProducts = [...bestSellers, ...newArrivals, ...specialOffers];
+    if (combinedProducts.length === 0) {
       return res
         .status(400)
-        .json({ message: "Mismatched products and images" });
+        .json({ message: "No products available to combine." });
     }
 
-    const savedProducts = [];
-    for (let i = 0; i < parsedProducts.length; i++) {
-      const { name, description, price, color, badge } = parsedProducts[i];
-      const imageUrl = files[i].path;
-
-      const newProduct = new Product({
-        productName: name,
-        des: description,
-        price: Number(price),
-        color,
-        badge: badge === "true", // Convert to boolean
-        image: imageUrl,
-      });
-
-      const savedProduct = await newProduct.save();
-      savedProducts.push(savedProduct);
-    }
+    const savedProducts = await Promise.all(
+      combinedProducts.map(async (product) => {
+        return new Product({
+          productName: product.productName,
+          des: product.des,
+          price: product.price,
+          categories: product.categories || "General",
+          badge: product.badge,
+          image: product.image,
+        }).save();
+      })
+    );
 
     res.status(201).json({
-      message: "Products created successfully",
+      message: "Products created successfully from other categories",
       products: savedProducts,
     });
   } catch (error) {
     res
       .status(500)
-      .json({ message: `Error while creating products: ${error.message}` });
+      .json({ message: `Error creating products: ${error.message}` });
   }
 };
-
 export const get_Product = async (req, res) => {
   try {
     const data = await Product.find({});

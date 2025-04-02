@@ -32,6 +32,7 @@ const Cart = () => {
   const handleCheckout = async () => {
     if (!userId) {
       alert("Please log in to place an order.");
+      navigate("/login");
       return;
     }
 

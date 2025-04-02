@@ -12,10 +12,10 @@ const LockedPage = () => {
           style={{ width: "300px", height: "300px", margin: "0 auto" }}
         />
         <div className="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-shadow">
-          <h1 className="text-3xl text-black font-bold mb-4">
+          <h1 className="text-4xl text-black font-bold mb-4">
             🔒 This Site is Locked
           </h1>
-          <p className="text-lg text-black">
+          <p className="text-lg text-black font-bold">
             We're working under maintenance. Please check back later!
           </p>
         </div>

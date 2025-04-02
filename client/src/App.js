@@ -26,11 +26,13 @@ import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/Account/Profile";
 import { useState, useEffect } from "react";
 import LockedPage from "./pages/Lock_Page/Lock_Page";
-import Main from "./dashboard/Main";
+import Main from "./dashboard/AdminLogin";
 import Inventory from "./dashboard/Pages/Inventory";
 import Orders from "./dashboard/Pages/Orders";
 import Customers from "./dashboard/Pages/Customers";
 import ProductUpload from "./dashboard/Pages/ProductUpload/ProductUpload";
+import Dashboard from "./dashboard/Pages/Dashbaord";
+import AdminLogin from "./dashboard/AdminLogin";
 
 const Layout = () => {
   return (
@@ -59,8 +61,8 @@ const Layout = () => {
 };
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
-      {/* <Route path="/" element={<LockedPage />}> */}
+    // <Route>
+    <Route path="/" element={<LockedPage />}>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
@@ -74,7 +76,8 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
-      <Route path="/dashboard" element={<Main />}></Route>
+      <Route path="/admin-login" element={<AdminLogin />}></Route>
+      <Route path="/admin-dashboard" element={<Dashboard />}></Route>
       <Route path="/inventory" element={<Inventory />}></Route>
       <Route path="/upload_products" element={<ProductUpload />}></Route>
       <Route path="/orders" element={<Orders />}></Route>
